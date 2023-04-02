@@ -28,6 +28,8 @@ class BookFactory extends Factory
             'author' => $this->faker->name,
             'description' => $this->faker->text,
             'category' => Category::random()->category,
+            'price' => rand(5, 199),
+            'quantity' => rand(10, 1000),
             'status' => rand(0, 10) > 5 ? Category::STATUS_ACTIVE : Category::STATUS_INACTIVE,
             'published_by' => Profile::random()->id
         ];

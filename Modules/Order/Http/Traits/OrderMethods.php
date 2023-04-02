@@ -1,26 +1,26 @@
 <?php
 
-namespace Modules\Book\Http\Traits;
+namespace Modules\Order\Http\Traits;
 
-use Modules\Book\Entities\Book;
-
-trait BookMethods
+trait OrderMethods
 {
     /**
-     * Get the book statuses
+     * Get order statuses
      *
      * @return array
      */
     public static function getStatuses()
     {
         return [
-            Book::STATUS_ACTIVE,
-            Book::STATUS_INACTIVE
+            self::STATUS_PENDING,
+            self::STATUS_PAID,
+            self::STATUS_CANCELLED
         ];
     }
 
+
     /**
-     * Get a random book object
+     * Get a random order object
      *
      * @return mixed
      */

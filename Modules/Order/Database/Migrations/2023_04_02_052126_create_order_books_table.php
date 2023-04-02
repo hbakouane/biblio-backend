@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Modules\Book\Entities\Book;
 
 return new class extends Migration
 {
@@ -14,33 +13,25 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('order_books', function (Blueprint $table) {
             $table->uuid('id')
                 ->primary();
 
-            $table->string('title')
+            $table->string('book_id')
                 ->nullable();
-            $table->string('excerpt')
+            $table->string('order_id')
                 ->nullable();
-            $table->string('author')
-                ->nullable();
-            $table->string('description')
-                ->nullable();
-            $table->string('category');
             $table->decimal('price')
                 ->nullable();
             $table->integer('quantity')
                 ->nullable();
-            $table->enum('status', Book::getStatuses())
-                ->default(Book::STATUS_ACTIVE);
-            $table->string('published_by');
 
-            $table->foreign('category')
-                ->references('category')
-                ->on('categories');
-            $table->foreign('published_by')
+            $table->foreign('book_id')
                 ->references('id')
-                ->on('profiles');
+                ->on('books');
+            $table->foreign('order_id')
+                ->references('id')
+                ->on('orders');
 
             $table->timestamps();
         });
@@ -53,6 +44,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('order_books');
     }
 };

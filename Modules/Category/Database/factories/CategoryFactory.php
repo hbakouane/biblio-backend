@@ -23,7 +23,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'category' => $this->faker->word,
+            'category' => $this->faker->name,
             'description' => $this->faker->text,
             'status' => rand(0, 10) > 5 ? Category::STATUS_ACTIVE : Category::STATUS_INACTIVE,
             'created_by' => Profile::random()->id
