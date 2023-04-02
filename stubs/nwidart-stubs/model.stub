@@ -4,13 +4,14 @@ namespace $NAMESPACE$;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Uuids;
 
 class $CLASS$ extends Model
 {
-    use HasFactory;
+    use HasFactory, Uuids;
 
     protected $fillable = $FILLABLE$;
-    
+
     protected static function newFactory()
     {
         return \$MODULE_NAMESPACE$\$MODULE$\Database\factories\$NAME$Factory::new();
