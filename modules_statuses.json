@@ -1,0 +1,10 @@
+{
+    "Country": true,
+    "Address": true,
+    "User": true,
+    "Core": true,
+    "Profile": true,
+    "Category": true,
+    "Book": true,
+    "Order": true
+}

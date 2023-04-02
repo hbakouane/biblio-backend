@@ -4,6 +4,13 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Modules\Address\Database\Seeders\AddressDatabaseSeeder;
+use Modules\Book\Database\Seeders\BookDatabaseSeeder;
+use Modules\Category\Database\Seeders\CategoryDatabaseSeeder;
+use Modules\Country\Database\Seeders\CountryTableSeeder;
+use Modules\Order\Database\Seeders\OrderDatabaseSeeder;
+use Modules\Profile\Database\Seeders\ProfileDatabaseSeeder;
+use Modules\User\Database\Seeders\UserDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +19,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call(CountryTableSeeder::class);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call(UserDatabaseSeeder::class);
+
+        $this->call(AddressDatabaseSeeder::class);
+
+        $this->call(CategoryDatabaseSeeder::class);
+
+        $this->call(BookDatabaseSeeder::class);
+
+        $this->call(OrderDatabaseSeeder::class);
     }
 }
