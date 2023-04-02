@@ -10,6 +10,11 @@ class $CLASS$ extends Model
 {
     use HasFactory, Uuids;
 
+    /**
+     * Mass-assignable attributes
+     *
+     * @var array[]
+    */
     protected $fillable = $FILLABLE$;
 
     protected static function newFactory()

@@ -5,12 +5,19 @@ namespace Modules\Profile\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\Uuids;
-use Modules\User\Entities\User;
+use Modules\Address\Http\Traits\HasAddress;
+use Modules\Profile\Http\Traits\ProfileMethods;
+use Modules\Profile\Http\Traits\ProfileRelationships;
 
 class Profile extends Model
 {
-    use HasFactory, Uuids;
+    use HasFactory, Uuids, HasAddress, ProfileMethods, ProfileRelationships;
 
+    /**
+     * Mass-assignable attributes
+     *
+     * @var array[]
+     */
     protected $fillable = [
         'country_id',
         'dob',
@@ -21,21 +28,6 @@ class Profile extends Model
         'status',
         'last_logged_in'
     ];
-
-    public function getPhoneNumberForHumans()
-    {
-        return $this->country->calling_code . $this->phone_number;
-    }
-
-    public function scopeActive($query)
-    {
-        return $query->where('status', User::STATUS_ACTIVE);
-    }
-
-    public function scopeInactive($query)
-    {
-        return $query->where('status', User::STATUS_INACTIVE);
-    }
 
     protected static function newFactory()
     {

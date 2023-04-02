@@ -11,6 +11,12 @@ class Address extends Model
 {
     use HasFactory, Uuids, AddressRelationships;
 
+
+    /**
+     * Mass-assignable attributes
+     *
+     * @var array[]
+     */
     protected $fillable = [
         'owner',
         'owner_id',

@@ -4,6 +4,7 @@ namespace Modules\Address\Database\factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Country\Entities\Country;
+use Modules\Profile\Entities\Profile;
 use Modules\User\Entities\User;
 
 class AddressFactory extends Factory
@@ -22,11 +23,11 @@ class AddressFactory extends Factory
      */
     public function definition()
     {
-        $user = User::random();
+        $profile = Profile::random();
 
         return [
-            'owner_type' => $user::class,
-            'owner_id' => $user->id,
+            'owner_type' => $profile::class,
+            'owner_id' => $profile->id,
             'address_line_1' => $this->faker->address,
             'state' => $this->faker->randomElement(['Alaska', 'Georgia', 'California']),
             'city' => $this->faker->city,

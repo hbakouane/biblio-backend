@@ -8,14 +8,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Modules\User\Database\factories\UserFactory;
+ use Modules\User\Database\factories\UserFactory;
+ use Modules\User\Http\Traits\UserMethods;
+ use Modules\User\Http\Traits\UserRelationships;
 
-class User extends Authenticatable implements MustVerifyEmail
+ class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, Uuids;
+    use HasApiTokens, HasFactory, Notifiable, Uuids, UserMethods, UserRelationships;
 
     /**
-     * The attributes that are mass assignable.
+     * Mass-assignable attributes
      *
      * @var array<int, string>
      */
@@ -46,29 +48,19 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-
     /**
      * Possible user statuses
      */
     const STATUS_ACTIVE = 'active';
     const STATUS_INACTIVE = 'inactive';
 
-    public static function getStatuses()
-    {
-        return [
-            self::STATUS_ACTIVE,
-            self::STATUS_INACTIVE
-        ];
-    }
-
-    public static function random()
-    {
-        return self::inRandomOrder()
-            ->first();
-    }
-
-    protected static function newFactory()
-    {
-        return UserFactory::new();
-    }
+     /**
+      * Attach the model's factory class
+      *
+      * @return UserFactory
+      */
+     protected static function newFactory()
+     {
+         return UserFactory::new();
+     }
 }
