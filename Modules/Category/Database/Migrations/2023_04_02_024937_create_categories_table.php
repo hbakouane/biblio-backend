@@ -19,6 +19,8 @@ return new class extends Migration
                 ->primary();
 
             $table->string('category')
+                ->index()
+                ->unique()
                 ->nullable();
             $table->text('description')
                 ->nullable();

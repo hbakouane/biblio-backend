@@ -20,11 +20,22 @@ trait CategoryMethods
     }
 
     /**
+     * Get random category
+     *
+     * @return mixed
+     */
+    public static function random()
+    {
+        return self::inRandomOrder()
+            ->first();
+    }
+
+    /**
      * Create a new category
      *
      * @param string $category
      * @param string $description
-     * @param string $createdBy
+     * @param string|null $createdBy
      * @return void
      */
     public function createCategory(

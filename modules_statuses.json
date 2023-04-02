@@ -4,5 +4,6 @@
     "User": true,
     "Core": true,
     "Profile": true,
-    "Category": true
+    "Category": true,
+    "Book": true
 }
