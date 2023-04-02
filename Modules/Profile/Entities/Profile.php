@@ -11,7 +11,8 @@ use Modules\Profile\Http\Traits\ProfileRelationships;
 
 class Profile extends Model
 {
-    use HasFactory, Uuids, HasAddress, ProfileMethods, ProfileRelationships;
+    use HasFactory, Uuids, HasAddress,
+        ProfileMethods, ProfileRelationships;
 
     /**
      * Mass-assignable attributes
@@ -19,6 +20,7 @@ class Profile extends Model
      * @var array[]
      */
     protected $fillable = [
+        'user_id',
         'country_id',
         'dob',
         'note',

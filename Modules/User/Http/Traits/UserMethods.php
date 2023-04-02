@@ -2,6 +2,9 @@
 
 namespace Modules\User\Http\Traits;
 
+use Illuminate\Support\Facades\Hash;
+use Modules\Profile\Entities\Profile;
+
 trait UserMethods
 {
     /**
@@ -27,5 +30,37 @@ trait UserMethods
     {
         return self::inRandomOrder()
             ->first();
+    }
+
+    /**
+     * Create a new user
+     *
+     * @param $firstName
+     * @param $lastName
+     * @param $fullName
+     * @param $email
+     * @param $password
+     * @return mixed
+     */
+    public static function createUser(
+        $firstName,
+        $lastName,
+        $fullName,
+        $email,
+        $password
+    )
+    {
+        $user = self::create([
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'full_name' => $fullName ?? ($firstName . ' ' . $lastName),
+            'email' => $email,
+            'password' => Hash::make($password)
+        ]);
+
+        // Create a profile for the created user
+        Profile::createProfile($user->id);
+
+        return $user;
     }
 }

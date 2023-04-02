@@ -3,5 +3,6 @@
     "Address": true,
     "User": true,
     "Core": true,
-    "Profile": true
+    "Profile": true,
+    "Category": true
 }

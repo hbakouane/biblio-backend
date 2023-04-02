@@ -20,7 +20,8 @@ return new class extends Migration
 
             $table->string('user_id');
 
-            $table->string('country_id');
+            $table->string('country_id')
+                ->nullable();
 
             $table->date('dob')
                 ->nullable();
@@ -29,7 +30,8 @@ return new class extends Migration
             $table->text('website')
                 ->nullable();
 
-            $table->string('phone_country_id');
+            $table->string('phone_country_id')
+                ->nullable();
             $table->integer('phone_number')
                 ->nullable();
 
