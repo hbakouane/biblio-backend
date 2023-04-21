@@ -3,6 +3,7 @@
 namespace Modules\User\Http\Traits;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\Profile\Entities\Profile;
 
 trait UserRelationships
@@ -10,7 +11,7 @@ trait UserRelationships
     /**
      * Get the related profile object
      *
-     * @return BelongsTo
+     * @return HasOne
      */
     public function profile()
     {

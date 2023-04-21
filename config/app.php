@@ -58,6 +58,8 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+    'flag_url' => env('FLAG_URL', 'http://www.geognos.com/api/en/countries/flag/'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
