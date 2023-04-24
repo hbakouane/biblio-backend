@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use \Modules\User\Http\Controllers\Auth\Signup\RegisterController;
+use \Modules\User\Http\Controllers\Auth\Login\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,20 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('auth')->as('api.auth.')->group(function () {
+    /*
+     ******************************
+     *          Register
+     *******************************
+     */
+    Route::post('/register', [RegisterController::class, 'register'])
+        ->name('register');
+
+    /*
+     ******************************
+     *          Login
+     *******************************
+     */
+    Route::post('/login', [LoginController::class, 'login'])
+        ->name('login');
 });

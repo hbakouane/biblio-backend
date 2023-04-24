@@ -15,7 +15,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Biblio'),
+
+    'url' => env('APP_URL', 'https://biblio.test'),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,6 +59,8 @@ return [
     'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL'),
+
+    'flag_url' => env('FLAG_URL', 'http://www.geognos.com/api/en/countries/flag/'),
 
     /*
     |--------------------------------------------------------------------------

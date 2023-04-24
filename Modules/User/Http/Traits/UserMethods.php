@@ -2,8 +2,12 @@
 
 namespace Modules\User\Http\Traits;
 
+use Illuminate\Mail\SentMessage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Modules\Core\Jobs\SendWelcomeEmailToUser;
 use Modules\Profile\Entities\Profile;
+use Modules\User\Emails\WelcomeEmail;
 
 trait UserMethods
 {
@@ -58,9 +62,23 @@ trait UserMethods
             'password' => Hash::make($password)
         ]);
 
+        self::sendWelcomeEmail($user);
+
         // Create a profile for the created user
         Profile::createProfile($user->id);
 
         return $user;
+    }
+
+    /**
+     * Send welcome email to the new created user
+     *
+     * @param $user
+     * @return void
+     */
+    protected static function sendWelcomeEmail($user)
+    {
+        SendWelcomeEmailToUser::dispatch($user)
+            ->delay(now()->addMinute());
     }
 }
