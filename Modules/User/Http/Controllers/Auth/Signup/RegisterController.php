@@ -37,7 +37,7 @@ class RegisterController extends Controller
     private function process($request)
     {
         $data = $request->validated();
-        // TODO: Send a welcome email to the user
+
         return User::createUser(
             $data['first_name'],
             $data['last_name'],

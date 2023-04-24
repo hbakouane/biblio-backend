@@ -15,7 +15,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Biblio'),
+
+    'url' => env('APP_URL', 'https://biblio.test'),
 
     /*
     |--------------------------------------------------------------------------
