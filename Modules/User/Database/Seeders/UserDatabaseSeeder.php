@@ -23,5 +23,16 @@ class UserDatabaseSeeder extends Seeder
                 'user_id' => $user->id
             ]);
         });
+
+        User::factory(1)->create([
+            'first_name' => 'Haytam',
+            'last_name' => 'Bakouane',
+            'full_name' => 'Haytam Bakouane',
+            'email' => 'hbakouane@gmail.com'
+        ])->each(function ($user) {
+            Profile::factory()->create([
+                'user_id' => $user->id
+            ]);
+        });
     }
 }

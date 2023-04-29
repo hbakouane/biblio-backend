@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'last_name' => $lastName,
             'full_name' => $firstName . ' ' . $lastName,
             'email' => $this->faker->email,
-            'password' => Hash::make('password')
+            'password' => Hash::make('12345678')
         ];
     }
 }
