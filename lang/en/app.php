@@ -24,5 +24,13 @@ return [
             'content' => '<b>Hi :name</b>, <br /><br /> We\'ve got great news, your new account has been activated. You can visit our online library and start buying your favourite books!'
         ],
         'discover_books' => 'Discover our books'
+    ],
+
+    'user' => [
+        'settings' => [
+            'profile_photo_uploaded' => 'Profile photo was uploaded successfully.',
+            'profile_photo_deleted' => 'Profile photo was deleted successfully.',
+            'profile_photo_doesnt_exist' => 'This user doesn\'t have a profile photo.'
+        ]
     ]
 ];

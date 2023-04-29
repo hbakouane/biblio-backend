@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
+use Modules\User\Entities\User;
 
 class CoreController extends Controller
 {
@@ -41,5 +42,32 @@ class CoreController extends Controller
         return response([
             'message' => $message ?? __('app.response.invalid')
         ]);
+    }
+
+    /**
+     * Uploads the given media to a collection
+     *
+     * @param Model $model
+     * @param $media
+     * @param string $collection
+     * @param string|null $name
+     * @param string|null $fileName
+     * @return void
+     */
+    public function uploadMedia(
+        User|Model $model,
+        $media,
+        string $collection,
+        string $name = null,
+        string $fileName = null
+    )
+    {
+        $media = $model->addMedia($media);
+
+        if ($name) $media->usingName($name);
+
+        if ($fileName) $media->usingFileName($fileName);
+
+        return $media->toMediaCollection($collection);
     }
 }
