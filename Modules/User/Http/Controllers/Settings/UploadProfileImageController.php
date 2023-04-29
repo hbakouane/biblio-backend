@@ -21,12 +21,12 @@ class UploadProfileImageController extends Controller
      */
     public function uploadImage(UploadProfileImageRequest $request)
     {
-        $this->upload($request);
+        $image = $this->upload($request);
 
         return $this->success(
             __('app.user.settings.profile_photo_uploaded'),
             [
-                'profile_image' => auth()->user()->getProfileImage()
+                'profile_image' => auth()->user()->getProfileImage($image)
             ]
         );
     }

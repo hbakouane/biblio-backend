@@ -28,7 +28,9 @@ return [
 
     'user' => [
         'settings' => [
-            'profile_photo_uploaded' => 'Profile photo was uploaded successfully.'
+            'profile_photo_uploaded' => 'Profile photo was uploaded successfully.',
+            'profile_photo_deleted' => 'Profile photo was deleted successfully.',
+            'profile_photo_doesnt_exist' => 'This user doesn\'t have a profile photo.'
         ]
     ]
 ];

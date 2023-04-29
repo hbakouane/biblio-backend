@@ -107,19 +107,22 @@ trait UserMethods
      *
      * @return mixed
      */
-    public function getProfileImage()
+    public function getProfileImage($image = null)
     {
         $this->resetCachedProfileImageUrl();
 
-        return Cache::remember($this->getProfileImageCachingKey(), 3600 * 48, function () {
-            $profileImage = auth()->user()
-                ->getMedia(Core::COLLECTION_PROFILE_IMAGES)[0];
+        return Cache::remember($this->getProfileImageCachingKey(), 3600 * 48, function () use ($image) {
+
+            if ($image) return $image->getUrl();
+
+            $profileImagesCollection = auth()->user()
+                ->getMedia(Core::COLLECTION_PROFILE_IMAGES);
 
             // TODO: Return temporary url when we deploy the app to AWS
             // Local disk doesn't support temporary urls
             // $url = $profileImage->getTemporaryUrl(now()->addDay(1));
 
-            return url($profileImage->getUrl());
+            return $profileImagesCollection[0]->getUrl();
         });
     }
 }
