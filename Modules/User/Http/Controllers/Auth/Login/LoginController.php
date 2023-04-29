@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Modules\User\Http\Requests\Auth\Login\LoginRequest;
 use Modules\Core\Http\Controllers\CoreController as Controller;
+use Modules\User\Transformers\UserResource;
 
 class LoginController extends Controller
 {
@@ -22,9 +23,15 @@ class LoginController extends Controller
         $attempt = $this->attempt($request);
 
         if (!$attempt) return $this->invalid(__('app.auth.login.failure'));
-        // TODO: return a Bearer token
+
+        $user = auth()->user();
+
         return $this->success(
-            __('app.auth.login.success')
+            __('app.auth.login.success'),
+            [
+                'token' => $user->createToken('api_token')->plainTextToken,
+                'user' => new UserResource($user)
+            ]
         );
     }
 
