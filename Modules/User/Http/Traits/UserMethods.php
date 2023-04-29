@@ -2,12 +2,12 @@
 
 namespace Modules\User\Http\Traits;
 
-use Illuminate\Mail\SentMessage;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
+use Modules\Core\Entities\Core;
 use Modules\Core\Jobs\SendWelcomeEmailToUser;
 use Modules\Profile\Entities\Profile;
-use Modules\User\Emails\WelcomeEmail;
+use Modules\User\Entities\User;
 
 trait UserMethods
 {
@@ -59,7 +59,7 @@ trait UserMethods
             'last_name' => $lastName,
             'full_name' => $fullName ?? ($firstName . ' ' . $lastName),
             'email' => $email,
-            'password' => Hash::make($password)
+            'password' => Hash::make(User::TEMP_PASSWORD) // Hash::make($password)
         ]);
 
         self::sendWelcomeEmail($user);
@@ -80,5 +80,46 @@ trait UserMethods
     {
         SendWelcomeEmailToUser::dispatch($user)
             ->delay(now()->addMinute());
+    }
+
+    /**
+     * Return a caching key for the user's profile image
+     *
+     * @return string
+     */
+    public function getProfileImageCachingKey()
+    {
+        return "user:profile_image";
+    }
+
+    /**
+     * Reset the cached profile image temporary URL
+     *
+     * @return bool
+     */
+    public function resetCachedProfileImageUrl()
+    {
+        return Cache::forget($this->getProfileImageCachingKey());
+    }
+
+    /**
+     * Get the profile image URL after caching it for 2 days
+     *
+     * @return mixed
+     */
+    public function getProfileImage()
+    {
+        $this->resetCachedProfileImageUrl();
+
+        return Cache::remember($this->getProfileImageCachingKey(), 3600 * 48, function () {
+            $profileImage = auth()->user()
+                ->getMedia(Core::COLLECTION_PROFILE_IMAGES)[0];
+
+            // TODO: Return temporary url when we deploy the app to AWS
+            // Local disk doesn't support temporary urls
+            // $url = $profileImage->getTemporaryUrl(now()->addDay(1));
+
+            return url($profileImage->getUrl());
+        });
     }
 }

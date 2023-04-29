@@ -48,6 +48,6 @@ class LoginController extends Controller
         return Auth::attempt([
             'email' => $data['email'],
             'password' => $data['password']
-        ], $request->remember_me);
+        ], $request->get('remember_me'));
     }
 }

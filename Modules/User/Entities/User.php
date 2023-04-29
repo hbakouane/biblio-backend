@@ -11,11 +11,14 @@ use Laravel\Sanctum\HasApiTokens;
  use Modules\User\Database\factories\UserFactory;
  use Modules\User\Http\Traits\UserMethods;
  use Modules\User\Http\Traits\UserRelationships;
+ use Spatie\MediaLibrary\HasMedia;
+ use Spatie\MediaLibrary\InteractsWithMedia;
 
- class User extends Authenticatable implements MustVerifyEmail
+ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable,
-        Uuids, UserMethods, UserRelationships;
+        Uuids, UserMethods, UserRelationships,
+        InteractsWithMedia;
 
     /**
      * Mass-assignable attributes
@@ -54,6 +57,12 @@ use Laravel\Sanctum\HasApiTokens;
      */
     const STATUS_ACTIVE = 'active';
     const STATUS_INACTIVE = 'inactive';
+
+
+     /**
+      * Temporary password user for development
+      */
+     const TEMP_PASSWORD = '12345678';
 
      /**
       * Attach the model's factory class
