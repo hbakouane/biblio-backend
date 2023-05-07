@@ -13,11 +13,12 @@ use Laravel\Sanctum\HasApiTokens;
  use Modules\User\Http\Traits\UserRelationships;
  use Spatie\MediaLibrary\HasMedia;
  use Spatie\MediaLibrary\InteractsWithMedia;
+ use Spatie\Permission\Traits\HasRoles;
 
  class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable,
-        Uuids, UserMethods, UserRelationships,
+        HasRoles, Uuids, UserMethods, UserRelationships,
         InteractsWithMedia;
 
     /**
