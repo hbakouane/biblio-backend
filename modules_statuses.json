@@ -6,5 +6,6 @@
     "Profile": true,
     "Category": true,
     "Book": true,
-    "Order": true
+    "Order": true,
+    "Activity": true
 }
