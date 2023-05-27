@@ -4,7 +4,7 @@ namespace Modules\Category\Database\factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Category\Entities\Category;
-use Modules\Profile\Entities\Profile;
+use Modules\User\Entities\User;
 
 class CategoryFactory extends Factory
 {
@@ -26,7 +26,7 @@ class CategoryFactory extends Factory
             'category' => $this->faker->name,
             'description' => $this->faker->text,
             'status' => rand(0, 10) > 5 ? Category::STATUS_ACTIVE : Category::STATUS_INACTIVE,
-            'created_by' => Profile::random()->id
+            'created_by' => User::random()->id
         ];
     }
 }

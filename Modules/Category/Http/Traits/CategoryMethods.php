@@ -2,7 +2,7 @@
 
 namespace Modules\Category\Http\Traits;
 
-use Modules\Profile\Entities\Profile;
+use Modules\User\Entities\User;
 
 trait CategoryMethods
 {
@@ -35,19 +35,20 @@ trait CategoryMethods
      *
      * @param string $category
      * @param string $description
-     * @param string|null $createdBy
+     * @param User|null $createdBy
      * @return void
      */
-    public function createCategory(
+    public static function createCategory(
         string $category,
         string $description,
-        ? string $createdBy
+        ?User $createdBy
     )
     {
         return self::create([
             'category' => $category,
             'description' => $description,
-            'created_by' => $createdBy
+            'status' => self::STATUS_ACTIVE,
+            'created_by' => $createdBy?->id
         ]);
     }
 }

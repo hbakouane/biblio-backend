@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Modules\Category\Http\Controllers\ListCategoriesController;
+use Modules\Category\Http\Controllers\AddCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,24 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/category', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->prefix('categories')->as('api.categories.')->group(function () {
+    /*
+     ******************************************************
+     *
+     *                  List categories
+     *
+     ******************************************************
+     */
+    Route::get('/list', [ListCategoriesController::class, 'list'])
+        ->name('list');
+
+    /*
+     ******************************************************
+     *
+     *                 Add a new category
+     *
+     ******************************************************
+     */
+    Route::post('/add', [AddCategoryController::class, 'add'])
+        ->name('add');
 });

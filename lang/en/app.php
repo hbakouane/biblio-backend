@@ -14,7 +14,8 @@ return [
 
         'login' => [
             'success' => 'User was logged in successfully.',
-            'failure' => 'The given credentials are wrong.'
+            'failure' => 'The given credentials are wrong.',
+            'unauthorized' => 'You are unauthorized to login due to account suspension or inactivation.'
         ]
     ],
 
@@ -31,6 +32,12 @@ return [
             'profile_photo_uploaded' => 'Profile photo was uploaded successfully.',
             'profile_photo_deleted' => 'Profile photo was deleted successfully.',
             'profile_photo_doesnt_exist' => 'This user doesn\'t have a profile photo.'
+        ]
+    ],
+
+    'category' => [
+        'add' => [
+            'added' => 'Category added successfully.'
         ]
     ]
 ];
