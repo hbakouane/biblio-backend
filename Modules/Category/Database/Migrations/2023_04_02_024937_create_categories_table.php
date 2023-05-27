@@ -31,7 +31,7 @@ return new class extends Migration
 
             $table->foreign('created_by')
                 ->references('id')
-                ->on('profiles');
+                ->on('users');
 
             $table->timestamps();
         });

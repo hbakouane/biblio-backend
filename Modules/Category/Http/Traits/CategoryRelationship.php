@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\Book\Entities\Book;
 use Modules\Profile\Entities\Profile;
+use Modules\User\Entities\User;
 
 trait CategoryRelationship
 {
@@ -17,7 +18,7 @@ trait CategoryRelationship
     public function creator()
     {
         return $this->hasOne(
-            Profile::class,
+            User::class,
             'id',
             'created_by'
         );

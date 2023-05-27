@@ -26,6 +26,10 @@ class LoginController extends Controller
 
         $user = auth()->user();
 
+        if (!$user->allowedToLogin()) return $this->handleUnallowedAuthenticationResponse();
+
+        // TODO: Complete this => $user->registerLoginIn();
+
         return $this->success(
             __('app.auth.login.success'),
             [
@@ -49,5 +53,17 @@ class LoginController extends Controller
             'email' => $data['email'],
             'password' => $data['password']
         ], $request->get('remember_me'));
+    }
+
+    /**
+     * Handle the case when the user is not allowed to login
+     *
+     * @return Application|ResponseFactory|\Illuminate\Foundation\Application|Response
+     */
+    private function handleUnallowedAuthenticationResponse()
+    {
+        // TODO: Logout the user
+
+        return $this->invalid(__('app.auth.login.unauthorized'));
     }
 }

@@ -8,6 +8,11 @@ namespace Modules\Core\Entities;
 class Core
 {
     /**
+     * Items to return per page in a pagination
+     */
+    const ITEMS_PER_PAGE = 10;
+
+    /**
      * Allowed image extensions
      *
      * @var array|string[]

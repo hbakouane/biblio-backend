@@ -2,6 +2,7 @@
 
 namespace Modules\User\Http\Traits;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Modules\Core\Entities\Core;
@@ -125,5 +126,26 @@ trait UserMethods
 
             return $profileImagesCollection[0]->getUrl();
         });
+    }
+
+    /**
+     * Register the time when the user was logged in
+     *
+     * @return Carbon
+     */
+    public function registerLoginIn()
+    {
+        return $this->profile->last_logged_in ??= now();
+    }
+
+
+    /**
+     * Check if the user is allowed to login
+     *
+     * @return void
+     */
+    public function allowedToLogin()
+    {
+        return $this->profile->status === self::STATUS_ACTIVE;
     }
 }
