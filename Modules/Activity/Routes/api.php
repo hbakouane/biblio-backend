@@ -1,18 +1,15 @@
 <?php
 
-use Illuminate\Http\Request;
+use Modules\Activity\Http\Controllers\ListActivitiesController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:api')->get('/activity', function (Request $request) {
-    return $request->user();
-});
+Route::prefix('activities')
+    ->as('api.activities.')
+    ->group(function() {
+        /*
+         ******************************************
+         *          List all the countries
+         ******************************************
+         */
+        Route::get('/list', [ListActivitiesController::class, 'list'])
+            ->name('list');
+    });
