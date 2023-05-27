@@ -59,7 +59,8 @@ trait UserMethods
             'last_name' => $lastName,
             'full_name' => $fullName ?? ($firstName . ' ' . $lastName),
             'email' => $email,
-            'password' => Hash::make(User::TEMP_PASSWORD) // Hash::make($password)
+            'password' => Hash::make(User::TEMP_PASSWORD /*$password*/)
+            // TODO: Uncomment password when app is in production
         ]);
 
         self::sendWelcomeEmail($user);

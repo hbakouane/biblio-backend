@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Modules\Activity\Database\Seeders\ActivityDatabaseSeeder;
 use Modules\Address\Database\Seeders\AddressDatabaseSeeder;
 use Modules\Book\Database\Seeders\BookDatabaseSeeder;
 use Modules\Category\Database\Seeders\CategoryDatabaseSeeder;
@@ -30,5 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BookDatabaseSeeder::class);
 
         $this->call(OrderDatabaseSeeder::class);
+
+        $this->call(ActivityDatabaseSeeder::class);
     }
 }

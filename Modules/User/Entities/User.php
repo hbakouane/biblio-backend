@@ -59,7 +59,7 @@ use Laravel\Sanctum\HasApiTokens;
     const STATUS_INACTIVE = 'inactive';
 
 
-     /**
+     /** TODO: Remove this when app is in production
       * Temporary password user for development
       */
      const TEMP_PASSWORD = '12345678';
