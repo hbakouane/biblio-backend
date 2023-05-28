@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Modules\Category\Http\Controllers\ListCategoriesController;
 use Modules\Category\Http\Controllers\AddCategoryController;
 use Modules\Category\Http\Controllers\DeleteCategoryController;
+use Modules\Category\Http\Controllers\EditCategoryController;
+use Modules\Category\Http\Controllers\UpdateCategoryStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,26 @@ Route::middleware('auth:sanctum')->prefix('categories')->as('api.categories.')->
      ******************************************************
      */
     Route::prefix('{category}')->group(function () {
+        /*
+         ******************************************************
+         *
+         *                 Update a category
+         *
+         ******************************************************
+         */
+        Route::patch('/update', [EditCategoryController::class, 'update'])
+            ->name('update');
+
+        /*
+         ******************************************************
+         *
+         *                Update category status
+         *
+         ******************************************************
+         */
+        Route::patch('/status/update', [UpdateCategoryStatusController::class, 'update'])
+            ->name('status.update');
+
         /*
          ******************************************************
          *
