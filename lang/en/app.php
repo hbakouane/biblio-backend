@@ -40,6 +40,13 @@ return [
             'added' => 'Category was added successfully.'
         ],
 
+        'update' => [
+            'updated' => 'Category was updated successfully.',
+            'status' => [
+                'updated' => 'Category\'s status was updated successfully.'
+            ]
+        ],
+
         'delete' => [
             'deleted' => 'Category was deleted successfully.'
         ]
