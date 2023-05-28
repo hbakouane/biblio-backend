@@ -37,7 +37,11 @@ return [
 
     'category' => [
         'add' => [
-            'added' => 'Category added successfully.'
+            'added' => 'Category was added successfully.'
+        ],
+
+        'delete' => [
+            'deleted' => 'Category was deleted successfully.'
         ]
     ],
 

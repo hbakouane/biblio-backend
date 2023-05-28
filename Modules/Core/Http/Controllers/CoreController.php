@@ -36,6 +36,7 @@ class CoreController extends Controller
 
     public function paginatedData($paginated, $resource)
     {
+        // TODO: Complete pagination
         $data = [];
 
         $data['items'] = array_values($resource::collection($paginated['data'])
@@ -58,7 +59,7 @@ class CoreController extends Controller
      * @param $data
      * @return Application|ResponseFactory|\Illuminate\Foundation\Application|Response
      */
-    public function success($message = null, $data = null)
+    public function success($message = null, $data = null, $status = 200)
     {
         $res = [
             'message' => $message ?? __('app.response.success')
@@ -66,7 +67,7 @@ class CoreController extends Controller
 
         if ($data) $res['data'] = $data;
 
-        return response($res, 200);
+        return response($res, $status);
     }
 
     /**

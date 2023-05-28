@@ -37,10 +37,12 @@ return new class extends Migration
 
             $table->foreign('category')
                 ->references('category')
-                ->on('categories');
+                ->on('categories')
+                ->cascadeOnDelete();
             $table->foreign('published_by')
                 ->references('id')
-                ->on('profiles');
+                ->on('profiles')
+                ->cascadeOnDelete();
 
             $table->timestamps();
         });
