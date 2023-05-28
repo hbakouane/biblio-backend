@@ -29,7 +29,8 @@ class ListCategoriesController extends Controller
         /** @var $categories */
         $categories = $this->fetchCategories($filter, $request);
 
-        return $this->paginatedData(
+        // TODO: Add pagination
+        return $this->data(
             $categories,
             CategoryResource::class
         );

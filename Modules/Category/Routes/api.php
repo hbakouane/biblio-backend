@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Modules\Category\Http\Controllers\ListCategoriesController;
 use Modules\Category\Http\Controllers\AddCategoryController;
+use Modules\Category\Http\Controllers\DeleteCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +36,23 @@ Route::middleware('auth:sanctum')->prefix('categories')->as('api.categories.')->
      */
     Route::post('/add', [AddCategoryController::class, 'add'])
         ->name('add');
+
+    /*
+     ******************************************************
+     *
+     *             Routes for a specific category
+     *
+     ******************************************************
+     */
+    Route::prefix('{category}')->group(function () {
+        /*
+         ******************************************************
+         *
+         *                 Delete a category
+         *
+         ******************************************************
+         */
+        Route::delete('/delete', [DeleteCategoryController::class, 'delete'])
+            ->name('delete');
+    });
 });

@@ -28,10 +28,12 @@ return new class extends Migration
 
             $table->foreign('book_id')
                 ->references('id')
-                ->on('books');
+                ->on('books')
+                ->cascadeOnDelete();
             $table->foreign('order_id')
                 ->references('id')
-                ->on('orders');
+                ->on('orders')
+                ->cascadeOnDelete();
 
             $table->timestamps();
         });
