@@ -1,6 +1,7 @@
 <?php
 
 use Modules\Activity\Http\Controllers\ListActivitiesController;
+use Modules\Activity\Http\Controllers\AddActivityController;
 
 Route::prefix('activities')
     ->as('api.activities.')
@@ -12,4 +13,12 @@ Route::prefix('activities')
          */
         Route::get('/list', [ListActivitiesController::class, 'list'])
             ->name('list');
+
+        /*
+         ******************************************
+         *            Add new activity
+         ******************************************
+         */
+        Route::post('/add', [AddActivityController::class, 'add'])
+            ->name('add');
     });

@@ -39,5 +39,11 @@ return [
         'add' => [
             'added' => 'Category added successfully.'
         ]
+    ],
+
+    'activity' => [
+        'add' => [
+            'added' => 'Activity was added successfully.'
+        ]
     ]
 ];
