@@ -20,18 +20,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(CountryTableSeeder::class);
-
-        $this->call(UserDatabaseSeeder::class);
-
-        $this->call(AddressDatabaseSeeder::class);
-
-        $this->call(CategoryDatabaseSeeder::class);
-
-        $this->call(BookDatabaseSeeder::class);
-
-        $this->call(OrderDatabaseSeeder::class);
-
-        $this->call(ActivityDatabaseSeeder::class);
+        // All the seeding are made in the Refresh command
     }
 }

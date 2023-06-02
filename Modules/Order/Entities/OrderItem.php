@@ -5,11 +5,13 @@ namespace Modules\Order\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\Uuids;
-use Modules\Order\Http\Traits\OrderBooksRelationships;
+use Modules\Order\Http\Traits\OrderItemsMethods;
+use Modules\Order\Http\Traits\OrderItemsRelationships;
 
-class OrderBook extends Model
+class OrderItem extends Model
 {
-    use HasFactory, Uuids, OrderBooksRelationships;
+    use HasFactory, Uuids, OrderItemsMethods,
+        OrderItemsRelationships;
 
     /**
      * Mass-assignable attributes
@@ -25,6 +27,6 @@ class OrderBook extends Model
 
     protected static function newFactory()
     {
-        return \Modules\Order\Database\factories\OrderBookFactory::new();
+        return \Modules\Order\Database\factories\OrderItemFactory::new();
     }
 }

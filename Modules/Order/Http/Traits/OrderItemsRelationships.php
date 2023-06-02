@@ -5,7 +5,7 @@ namespace Modules\Order\Http\Traits;
 use Modules\Book\Entities\Book;
 use Modules\Order\Entities\Order;
 
-trait OrderBooksRelationships
+trait OrderItemsRelationships
 {
     /**
      * Get the associated book

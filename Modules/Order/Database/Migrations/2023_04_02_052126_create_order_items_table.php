@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('order_books', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->uuid('id')
                 ->primary();
 
-            $table->string('book_id')
-                ->nullable();
+            $table->uuidMorphs('item');
             $table->string('order_id')
                 ->nullable();
             $table->decimal('price')
@@ -26,10 +25,6 @@ return new class extends Migration
             $table->integer('quantity')
                 ->nullable();
 
-            $table->foreign('book_id')
-                ->references('id')
-                ->on('books')
-                ->cascadeOnDelete();
             $table->foreign('order_id')
                 ->references('id')
                 ->on('orders')

@@ -23,7 +23,7 @@ return new class extends Migration
                 ->default(Order::STATUS_PENDING);
             $table->string('total')
                 ->nullable();
-            $table->decimal('note')
+            $table->string('note')
                 ->nullable();
 
             $table->foreign('customer')
