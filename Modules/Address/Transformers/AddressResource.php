@@ -24,8 +24,6 @@ class AddressResource extends JsonResource
             'zip' => $this->zip
         ];
 
-        $data['full_address'] = $this->print();
-
         if ($this->country_id) {
             $this->load('country');
         }
