@@ -122,6 +122,8 @@ trait UserMethods
             $profileImagesCollection = auth()->user()
                 ->getMedia(Core::COLLECTION_PROFILE_IMAGES);
 
+            if (!isset($profileImagesCollection[0])) return null;
+
             // TODO: Return temporary url when we deploy the app to AWS
             // Local disk doesn't support temporary urls
             // $url = $profileImage->getTemporaryUrl(now()->addDay(1));

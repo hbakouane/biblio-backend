@@ -32,4 +32,5 @@ Route::prefix('auth')->as('api.auth.')->group(function () {
         ->name('login');
 });
 
+include 'users.php';
 include 'settings.php';
