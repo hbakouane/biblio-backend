@@ -3,6 +3,7 @@
 namespace Modules\Profile\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Address\Transformers\AddressResource;
 use Modules\Country\Transformers\CountryResource;
 use Modules\User\Transformers\UserResource;
 
@@ -34,6 +35,10 @@ class ProfileResource extends JsonResource
             $data['country'] = $this->getCountry();
         }
 
+        if ($this->relationLoaded('address')) {
+            $data['address'] = $this->getAddress();
+        }
+
         return $data;
     }
 
@@ -63,5 +68,19 @@ class ProfileResource extends JsonResource
         if (! $country) return null;
 
         return new CountryResource($this->country);
+    }
+
+    /**
+     * Get the associated address of the profile
+     *
+     * @return AddressResource|null
+     */
+    private function getAddress()
+    {
+        $address = $this->address;
+
+        if (! $address) return null;
+
+        return new AddressResource($address);
     }
 }
