@@ -5,6 +5,7 @@ namespace Modules\User\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Profile\Entities\Profile;
+use Modules\User\Database\factories\UserFactory;
 use Modules\User\Entities\User;
 
 class UserDatabaseSeeder extends Seeder
@@ -18,21 +19,23 @@ class UserDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        User::factory(3)->create()->each(function ($user) {
-            Profile::factory()->create([
-                'user_id' => $user->id
-            ]);
-        });
+        for ($i = 0; $i < 3; $i++) {
+            $factory = app(UserFactory::class)->definition();
+            User::createUser(
+                $first = $factory['first_name'],
+                $last = $factory['last_name'],
+                $first . ' ' . $last,
+                $factory['email'],
+                123456
+            );
+        }
 
-        User::factory(1)->create([
-            'first_name' => 'Haytam',
-            'last_name' => 'Bakouane',
-            'full_name' => 'Haytam Bakouane',
-            'email' => 'hbakouane@gmail.com'
-        ])->each(function ($user) {
-            Profile::factory()->create([
-                'user_id' => $user->id
-            ]);
-        });
+        User::createUser(
+            $first = 'Haytam',
+            $last = 'Bakouane',
+            $first . ' ' . $last,
+            'hbakouane@gmail.com',
+            123456
+        );
     }
 }

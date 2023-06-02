@@ -48,11 +48,11 @@ trait UserMethods
      * @return mixed
      */
     public static function createUser(
-        $firstName,
-        $lastName,
-        $fullName,
-        $email,
-        $password
+        string          $firstName,
+        string          $lastName,
+        string|null     $fullName,
+        string          $email,
+        string          $password
     )
     {
         $user = self::create([
@@ -64,7 +64,9 @@ trait UserMethods
             // TODO: Uncomment password when app is in production
         ]);
 
-        self::sendWelcomeEmail($user);
+        // TODO: Reactivate the welcome email sending when we're in production so we don't use
+        // all mailtrap's free plan
+        // self::sendWelcomeEmail($user);
 
         // Create a profile for the created user
         Profile::createProfile($user->id);
