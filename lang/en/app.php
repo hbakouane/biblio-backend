@@ -4,7 +4,8 @@ return [
     'response' => [
         'success' => 'Operation was completed successfully.',
         'failure' => 'Something went wrong.',
-        'invalid' => 'Invalid response from server.'
+        'invalid' => 'Invalid response from server.',
+        'not_found' => 'Content not found.'
     ],
 
     'auth' => [
