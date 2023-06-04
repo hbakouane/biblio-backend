@@ -1,6 +1,8 @@
 <?php
 
 use Modules\Book\Http\Controllers\ListBooksController;
+use Modules\Book\Http\Controllers\DeleteBookController;
+use Modules\Book\Http\Controllers\UpdateBookController;
 
 Route::middleware('auth:sanctum')
     ->prefix('books')
@@ -15,4 +17,34 @@ Route::middleware('auth:sanctum')
          */
         Route::get('/list', [ListBooksController::class, 'list'])
             ->name('list');
+
+        /*
+         ******************************************************
+         *
+         *              Routes for a specific book
+         *
+         ******************************************************
+         */
+        Route::prefix('{book}')
+            ->group(function () {
+                /*
+                ******************************************************
+                *
+                *                     Update a book
+                *
+                ******************************************************
+                */
+                Route::patch('/update', [UpdateBookController::class, 'update'])
+                    ->name('update');
+
+                /*
+                ******************************************************
+                *
+                *                    Delete a book
+                *
+                ******************************************************
+                */
+                Route::delete('/delete', [DeleteBookController::class, 'delete'])
+                    ->name('delete');
+            });
     });
