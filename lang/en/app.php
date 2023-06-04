@@ -56,6 +56,14 @@ return [
     'book' => [
         'add' => [
             'added' => 'Book was added successfully.'
+        ],
+
+        'update' => [
+            'updated' => 'Book was updated successfully.'
+        ],
+
+        'delete' => [
+            'deleted' => 'Book was deleted successfully.'
         ]
     ],
 
