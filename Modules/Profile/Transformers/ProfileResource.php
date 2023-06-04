@@ -18,13 +18,16 @@ class ProfileResource extends JsonResource
     public function toArray($request)
     {
         $data = [
+            'id' => $this->id,
             'dob' => $this->dob,
             'note' => $this->note,
             'website' => $this->website,
             'phone_country_id' => $this->phone_country_id,
             'phone_number' => $this->phone_number,
             'status' => $this->status,
-            'last_logged_in' => $this->last_logged_in
+            'last_logged_in' => $this->last_logged_in,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
 
         if ($this->relationLoaded('user')) {

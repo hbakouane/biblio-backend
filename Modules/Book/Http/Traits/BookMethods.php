@@ -2,6 +2,7 @@
 
 namespace Modules\Book\Http\Traits;
 
+use Modules\Book\Database\factories\BookFactory;
 use Modules\Book\Entities\Book;
 use Modules\Category\Entities\Category;
 use Modules\Profile\Entities\Profile;
@@ -16,8 +17,8 @@ trait BookMethods
     public static function getStatuses()
     {
         return [
-            Book::STATUS_ACTIVE,
-            Book::STATUS_INACTIVE
+            Book::STATUS_PUBLISHED,
+            Book::STATUS_UNPUBLISHED
         ];
     }
 

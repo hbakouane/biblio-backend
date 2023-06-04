@@ -37,7 +37,7 @@ class AddNewBookRequest extends FormRequest
             'price' => [
                 'bail', 'required', 'numeric'
             ],
-            'qte '=> [
+            'quantity '=> [
                 'bail', 'required', 'string'
             ],
             'publisher_id' => [

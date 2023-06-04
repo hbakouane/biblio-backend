@@ -14,7 +14,36 @@ class UpdateBookRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => [
+                'bail', 'nullable', 'string',
+                'max:100'
+            ],
+            'author' => [
+                'bail', 'nullable', 'string',
+                'max:100'
+            ],
+            'excerpt' => [
+                'bail', 'nullable', 'string',
+                'max:120'
+            ],
+            'description' => [
+                'bail', 'nullable', 'string',
+                'max:10000'
+            ],
+            'category_id' => [
+                'bail', 'nullable', 'string',
+                'exists:categories,id'
+            ],
+            'price' => [
+                'bail', 'nullable', 'numeric'
+            ],
+            'quantity '=> [
+                'bail', 'nullable', 'numeric'
+            ],
+            'publisher_id' => [
+                'bail', 'nullable', 'string',
+                'exists:profiles,id'
+            ]
         ];
     }
 
