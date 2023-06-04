@@ -23,7 +23,7 @@ class Book extends Model
         'excerpt',
         'author',
         'description',
-        'category',
+        'category_id',
         'price',
         'quantity',
         'status',
