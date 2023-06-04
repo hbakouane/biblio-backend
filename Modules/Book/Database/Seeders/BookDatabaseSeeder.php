@@ -33,7 +33,7 @@ class BookDatabaseSeeder extends Seeder
             $book->update([
                 'excerpt' => $factory['excerpt'],
                 'description' => $factory['description'],
-                'status' => rand(0, 10) > 5 ? Book::STATUS_ACTIVE : Book::STATUS_INACTIVE
+                'status' => rand(0, 10) > 5 ? Book::STATUS_PUBLISHED : Book::STATUS_UNPUBLISHED
             ]);
         }
     }

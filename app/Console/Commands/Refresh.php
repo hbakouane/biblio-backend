@@ -69,7 +69,7 @@ class Refresh extends Command
 
         $time = $this->getTimeDiff($now);
 
-        $this->info("Database refreshed. $time" . PHP_EOL);
+        $this->info("Database refreshed. ($time)" . PHP_EOL);
     }
 
     /**

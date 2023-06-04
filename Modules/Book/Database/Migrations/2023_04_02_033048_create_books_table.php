@@ -32,7 +32,7 @@ return new class extends Migration
             $table->integer('quantity')
                 ->nullable();
             $table->enum('status', Book::getStatuses())
-                ->default(Book::STATUS_ACTIVE);
+                ->default(Book::STATUS_PUBLISHED);
             $table->string('published_by');
 
             $table->foreign('category_id')

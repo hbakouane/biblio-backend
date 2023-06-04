@@ -5,13 +5,15 @@ namespace Modules\Book\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\Uuids;
+use Modules\Book\Database\factories\BookFactory;
 use Modules\Book\Http\Traits\BookMethods;
 use Modules\Book\Http\Traits\BookRelationships;
+use Modules\Core\Traits\Updatable;
 
 class Book extends Model
 {
     use HasFactory, Uuids, BookMethods,
-        BookRelationships;
+        BookRelationships, Updatable;
 
     /**
      * Mass-assignable attributes
@@ -30,13 +32,17 @@ class Book extends Model
         'published_by'
     ];
 
-
     /**
      * Possible book statuses
      */
-    const STATUS_ACTIVE = 'active';
-    const STATUS_INACTIVE = 'inactive';
+    const STATUS_PUBLISHED = 'published';
+    const STATUS_UNPUBLISHED = 'unpublished';
 
+    /**
+     * Get the factory class of the Book Model
+     *
+     * @return BookFactory
+     */
     protected static function newFactory()
     {
         return \Modules\Book\Database\factories\BookFactory::new();

@@ -40,7 +40,9 @@ class UpdateBookController extends Controller
     {
         $data = $request->validated();
 
-        $book->update($data);
+        $book->updateUsingRequest($request);
+
+        $book->load('publisher');
 
         return $book;
     }
