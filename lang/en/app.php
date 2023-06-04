@@ -53,6 +53,12 @@ return [
         ]
     ],
 
+    'book' => [
+        'add' => [
+            'added' => 'Book was added successfully.'
+        ]
+    ],
+
     'activity' => [
         'add' => [
             'added' => 'Activity was added successfully.'

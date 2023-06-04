@@ -1,6 +1,7 @@
 <?php
 
 use Modules\Book\Http\Controllers\ListBooksController;
+use Modules\Book\Http\Controllers\AddNewBookController;
 
 Route::middleware('auth:sanctum')
     ->prefix('books')
@@ -15,4 +16,14 @@ Route::middleware('auth:sanctum')
          */
         Route::get('/list', [ListBooksController::class, 'list'])
             ->name('list');
+
+        /*
+         ******************************************************
+         *
+         *                    Add a new book
+         *
+         ******************************************************
+         */
+        Route::post('add', [AddNewBookController::class, 'add'])
+            ->name('add');
     });

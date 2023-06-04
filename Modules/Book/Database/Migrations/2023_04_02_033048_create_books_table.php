@@ -24,9 +24,9 @@ return new class extends Migration
                 ->nullable();
             $table->string('author')
                 ->nullable();
-            $table->string('description')
+            $table->longText('description')
                 ->nullable();
-            $table->string('category');
+            $table->string('category_id');
             $table->decimal('price')
                 ->nullable();
             $table->integer('quantity')
@@ -35,10 +35,11 @@ return new class extends Migration
                 ->default(Book::STATUS_ACTIVE);
             $table->string('published_by');
 
-            $table->foreign('category')
-                ->references('category')
+            $table->foreign('category_id')
+                ->references('id')
                 ->on('categories')
                 ->cascadeOnDelete();
+
             $table->foreign('published_by')
                 ->references('id')
                 ->on('profiles')
