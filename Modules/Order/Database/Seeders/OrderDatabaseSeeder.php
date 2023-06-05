@@ -41,7 +41,7 @@ class OrderDatabaseSeeder extends Seeder
     protected function createOrder(array $definition, int $i)
     {
         $order = Order::createOrder(
-            $definition['customer'],
+            $definition['customer_id'],
             $definition['total']
         );
 

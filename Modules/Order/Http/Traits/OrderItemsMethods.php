@@ -21,8 +21,8 @@ trait OrderItemsMethods
     public static function createOrderItem(
         Book|Model              $item,
         string|Order            $order,
-        int             $price,
-        int             $quantity
+        int                     $price,
+        int                     $quantity
     )
     {
         return OrderItem::create([

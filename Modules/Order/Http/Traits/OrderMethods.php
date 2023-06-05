@@ -2,7 +2,9 @@
 
 namespace Modules\Order\Http\Traits;
 
+use Modules\Book\Entities\Book;
 use Modules\Order\Entities\Order;
+use Modules\Order\Entities\OrderItem;
 use Modules\Profile\Entities\Profile;
 
 trait OrderMethods
@@ -33,22 +35,32 @@ trait OrderMethods
             ->first();
     }
 
+    public function attachItem($item, $book)
+    {
+        return OrderItem::createOrderItem(
+            $book,
+            $this,
+            $book->price, // Save the current price of the item
+            $item['quantity']
+        );
+    }
+
     /**
      * Create a new order
      *
-     * @param Profile|int $customer
-     * @param int $total
+     * @param Profile|string $customer
+     * @param float $total
      * @param string $status
      * @return mixed
      */
     public static function createOrder(
-        Profile|string      $customer,
-        int                 $total,
-        string              $status = Order::STATUS_PENDING
+        Profile|string          $customer,
+        float                   $total,
+        string                  $status = Order::STATUS_PENDING
     )
     {
         return Order::create([
-            'customer' => $customer instanceof Profile ? $customer->id : $customer,
+            'customer_id' => $customer instanceof Profile ? $customer->id : $customer,
             'total' => $total,
             'status' => $status
         ]);

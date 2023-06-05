@@ -22,7 +22,7 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'customer' => Profile::random()->id, // TODO: Get the profile of a customer
+            'customer_id' => Profile::random()->id, // TODO: Get the profile of a customer
             'total' => $this->faker->numberBetween(6, 199), // TODO: Adjust the total of the order
             'note' => rand(0, 10) > 5 ? $this->faker->paragraph : null
         ];

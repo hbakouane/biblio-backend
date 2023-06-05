@@ -13,6 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/order', function (Request $request) {
-    return $request->user();
-});
+// TODO: Review middlewares
+include 'orders.php';

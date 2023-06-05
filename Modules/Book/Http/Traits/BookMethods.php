@@ -33,6 +33,13 @@ trait BookMethods
             ->first();
     }
 
+    public function updateQuantity($quantity)
+    {
+        return $this->update([
+            'quantity' => (int) $this->quantity - $quantity
+        ]);
+    }
+
     /**
      * Create a new book
      *

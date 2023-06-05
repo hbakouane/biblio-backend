@@ -67,6 +67,18 @@ return [
         ]
     ],
 
+    'order' => [
+        'add' => [
+            'added' => 'Order was added successfully.',
+            'items' => [
+                'attach' => [
+                    'attached' => 'items were added to order successfully.',
+                    'quantity_not_available' => 'The given quantity is not available for this item.'
+                ]
+            ]
+        ]
+    ],
+
     'activity' => [
         'add' => [
             'added' => 'Activity was added successfully.'
