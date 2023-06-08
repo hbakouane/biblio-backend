@@ -4,6 +4,7 @@ namespace Modules\Book\Http\Traits;
 
 use Modules\Book\Database\factories\BookFactory;
 use Modules\Book\Entities\Book;
+use Modules\Book\Jobs\NotifyPublisherTheBookWasOutOfStock;
 use Modules\Book\Jobs\RemindPublisherOfLowQuantity;
 use Modules\Category\Entities\Category;
 use Modules\Profile\Entities\Profile;
@@ -55,6 +56,17 @@ trait BookMethods
     public function remindPublisherOfLowQuantity()
     {
         RemindPublisherOfLowQuantity::dispatch($this)
+            ->delay(now()->addMinute());
+    }
+
+    /**
+     * Notify the publisher that the book is out of stock
+     *
+     * @return void
+     */
+    public function notifyPublisherThatTheBookWasOutOfStock()
+    {
+        NotifyPublisherTheBookWasOutOfStock::dispatch($this)
             ->delay(now()->addMinute());
     }
 

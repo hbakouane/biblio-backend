@@ -18,8 +18,8 @@
                 {{ $book['category']['category'] }}
             </div>
             <p class="text-muted mt-0 py-0 mb-4">
-                Copies left:
-                <span class="text-danger">{{ (int) $book['quantity'] }}</span>
+                Copies sold since publishing:
+                <span class="text-danger">{{ (int) $book['sold_copies'] }}</span>
             </p>
             @include('core::_partials.mails.cta', [
                 'text' => __('app.mail.update_quantity'),

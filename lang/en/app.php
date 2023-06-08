@@ -27,7 +27,8 @@ return [
         ],
         'discover_books' => 'Discover our books',
         'update_quantity' => 'Add more copies',
-        'low_quantity_reminder' => '🔥 Your book is getting out of stock, JUST :quantity LEFT'
+        'low_quantity_reminder' => 'Your book is getting out of stock, JUST :quantity LEFT',
+        'item_out_of_stock' => '[IMPORTANT]: Your book has been out of stock'
     ],
 
     'user' => [

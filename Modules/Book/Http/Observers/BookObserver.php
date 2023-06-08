@@ -46,7 +46,18 @@ class BookObserver
         }
 
         if ($quantity === 0) {
-            // TODO: Remind the publisher that their book has been out of stock
+            /*
+             * Check if the book's status wasn't set to out of stock
+             * and set it to it if not
+             */
+            if (($outOfStock = Book::STATUS_OUT_OF_STOCK) && $book->status !== $outOfStock) {
+                $book->update(['status' => $outOfStock]);
+            }
+
+            /*
+             * Remind the publisher that their book has been out of stock
+             */
+            $book->notifyPublisherThatTheBookWasOutOfStock();
         }
 
         if ($book->quantity >= 10 && Cache::get($quantityReminderCacheKey)) {

@@ -29,6 +29,7 @@ class Book extends Model
         'category_id',
         'price',
         'quantity',
+        'sold_copies',
         'status',
         'published_by'
     ];
