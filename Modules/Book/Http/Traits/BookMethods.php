@@ -4,6 +4,7 @@ namespace Modules\Book\Http\Traits;
 
 use Modules\Book\Database\factories\BookFactory;
 use Modules\Book\Entities\Book;
+use Modules\Book\Jobs\RemindPublisherOfLowQuantity;
 use Modules\Category\Entities\Category;
 use Modules\Profile\Entities\Profile;
 
@@ -17,8 +18,9 @@ trait BookMethods
     public static function getStatuses()
     {
         return [
-            Book::STATUS_PUBLISHED,
-            Book::STATUS_UNPUBLISHED
+            self::STATUS_PUBLISHED,
+            self::STATUS_UNPUBLISHED,
+            self::STATUS_OUT_OF_STOCK
         ];
     }
 
@@ -33,11 +35,32 @@ trait BookMethods
             ->first();
     }
 
+    public function getQuantityReminderCacheKey()
+    {
+        return "book_$this->id:quantity_reminder_notification_sent";
+    }
+
+    public function remindPublisherOfLowQuantity()
+    {
+        RemindPublisherOfLowQuantity::dispatch($this);
+//            ->delay(now()->addMinute());
+    }
+
+    /**
+     * Update quantity of a book
+     *
+     * @param $quantity
+     * @return bool
+     */
     public function updateQuantity($quantity)
     {
-        return $this->update([
+        $data = [
             'quantity' => (int) $this->quantity - $quantity
-        ]);
+        ];
+
+        if ($this->quantity === 0) $data['status'] = self::STATUS_OUT_OF_STOCK;
+
+        return $this->update($data);
     }
 
     /**
