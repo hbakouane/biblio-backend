@@ -35,15 +35,27 @@ trait BookMethods
             ->first();
     }
 
+    /**
+     * Get a unique cache key for the book reminder, so
+     * we can be based on it, and we don't send the reminder
+     * more than one time
+     *
+     * @return string
+     */
     public function getQuantityReminderCacheKey()
     {
         return "book_$this->id:quantity_reminder_notification_sent";
     }
 
+    /**
+     * Remind the publisher of the low quantity of their book
+     *
+     * @return void
+     */
     public function remindPublisherOfLowQuantity()
     {
-        RemindPublisherOfLowQuantity::dispatch($this);
-//            ->delay(now()->addMinute());
+        RemindPublisherOfLowQuantity::dispatch($this)
+            ->delay(now()->addMinute());
     }
 
     /**

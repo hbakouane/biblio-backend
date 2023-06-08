@@ -34,9 +34,12 @@ class RemindPublisherOfLowQuantity extends Mailable
      */
     public function build()
     {
+        $book = $this->book;
+
         return $this->view('book::mails.remind_publisher_of_low_quantity')
+            ->subject(__('app.mail.low_quantity_reminder', ['quantity' => $book->quantity]))
             ->with([
-                'book' => $this->book
+                'book' => $book
             ]);
     }
 }

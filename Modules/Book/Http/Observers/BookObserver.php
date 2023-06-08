@@ -12,7 +12,14 @@ class BookObserver
      */
     public function created(Book $book): void
     {
-        // ...
+        /*
+         * Keep a copy of the first registered quantity because
+         * the quantity gets updated every time a book has been
+         * purchased
+         */
+        $book->update([
+            'legacy_quantity' => $book->quantity
+        ]);
     }
 
     /**
@@ -33,9 +40,9 @@ class BookObserver
         $quantity = $book->quantity;
 
         if ((! Cache::get($quantityReminderCacheKey)) && $quantity < 10) {
-                $book->remindPublisherOfLowQuantity();
+            $book->remindPublisherOfLowQuantity();
 
-                Cache::put($quantityReminderCacheKey, true);
+            Cache::put($quantityReminderCacheKey, true);
         }
 
         if ($quantity === 0) {

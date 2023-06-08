@@ -26,7 +26,8 @@ return [
             'content' => '<b>Hi :name</b>, <br /><br /> We\'ve got great news, your new account has been activated. You can visit our online library and start buying your favourite books!'
         ],
         'discover_books' => 'Discover our books',
-        'update_quantity' => 'Update quantity'
+        'update_quantity' => 'Add more copies',
+        'low_quantity_reminder' => '🔥 Your book is getting out of stock, JUST :quantity LEFT'
     ],
 
     'user' => [
