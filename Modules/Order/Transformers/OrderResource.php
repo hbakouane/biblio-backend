@@ -2,6 +2,7 @@
 
 namespace Modules\Order\Transformers;
 
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Book\Transformers\BookResource;
 use Modules\Profile\Transformers\ProfileResource;
@@ -36,6 +37,11 @@ class OrderResource extends JsonResource
         return $data;
     }
 
+    /**
+     * Get the associated items
+     *
+     * @return AnonymousResourceCollection|null
+     */
     private function getItems()
     {
         /*
@@ -45,11 +51,20 @@ class OrderResource extends JsonResource
          */
         $items = $this->items;
 
+        foreach ($items as $key => $item) {
+            $items[$key] = $item->item;
+        }
+
         if (!$items) return null;
 
         return BookResource::collection($items);
     }
 
+    /**
+     * Get the associated customer
+     *
+     * @return ProfileResource|null
+     */
     private function getCustomer()
     {
         $customer = $this->customer;

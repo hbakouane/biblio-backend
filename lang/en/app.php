@@ -72,7 +72,7 @@ return [
             'added' => 'Order was added successfully.',
             'items' => [
                 'attach' => [
-                    'attached' => 'items were added to order successfully.',
+                    'attached' => 'Items were added to order successfully.',
                     'quantity_not_available' => 'The given quantity is not available for this item.'
                 ]
             ]

@@ -2,6 +2,7 @@
 
 namespace Modules\Order\Http\Traits;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Book\Entities\Book;
 use Modules\Order\Entities\Order;
 
@@ -15,6 +16,16 @@ trait OrderItemsRelationships
     public function book()
     {
         return $this->hasOne(Book::class);
+    }
+
+    /**
+     * Get the associated item
+     *
+     * @return BelongsTo
+     */
+    public function item()
+    {
+        return $this->belongsTo(Book::class);
     }
 
     /**

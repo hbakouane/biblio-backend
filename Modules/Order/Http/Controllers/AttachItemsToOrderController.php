@@ -49,12 +49,14 @@ class AttachItemsToOrderController extends Controller
             foreach ($items as $item) {
                 $book = Book::find($item['item_id']);
 
-                $this->checkIfItemIsAddable($item, $book);
+                $this->checkIfQuantityIsAvailable($item, $book);
 
                 $order->attachItem($item, $book);
 
                 $book->updateQuantity($item['quantity']);
             }
+
+            $order->updateTotal();
         });
 
         $order->load('items');
@@ -70,9 +72,9 @@ class AttachItemsToOrderController extends Controller
      * @return bool
      * @throws ValidationException
      */
-    private function checkIfItemIsAddable(mixed $item, Book $book)
+    private function checkIfQuantityIsAvailable(mixed $item, Book $book)
     {
-        if (!$item['quantity'] <= $book->quantity) {
+        if (!($item['quantity'] <= $book->quantity)) {
             throw ValidationException::withMessages([
                 'quantity' => __('app.order.add.items.attach.quantity_not_available')
             ]);

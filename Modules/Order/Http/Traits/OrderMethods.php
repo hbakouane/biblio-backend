@@ -35,6 +35,13 @@ trait OrderMethods
             ->first();
     }
 
+    /**
+     * Attach an item to an order
+     *
+     * @param $item
+     * @param $book
+     * @return mixed
+     */
     public function attachItem($item, $book)
     {
         return OrderItem::createOrderItem(
@@ -43,6 +50,19 @@ trait OrderMethods
             $book->price, // Save the current price of the item
             $item['quantity']
         );
+    }
+
+    /**
+     * Update the total price of an order
+     *
+     * @param float $total
+     * @return bool
+     */
+    public function updateTotal()
+    {
+        return $this->update([
+            'total' => $this->items->sum('price')
+        ]);
     }
 
     /**
