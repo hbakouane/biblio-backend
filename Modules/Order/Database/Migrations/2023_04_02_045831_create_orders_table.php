@@ -25,6 +25,8 @@ return new class extends Migration
                 ->nullable();
             $table->string('note')
                 ->nullable();
+            $table->integer('times_customer_has_been_reminded')
+                ->default(0);
 
             $table->foreign('customer_id')
                 ->references('id')

@@ -55,7 +55,6 @@ trait OrderMethods
     /**
      * Update the total price of an order
      *
-     * @param float $total
      * @return bool
      */
     public function updateTotal()
@@ -63,6 +62,12 @@ trait OrderMethods
         return $this->update([
             'total' => $this->items->sum('price')
         ]);
+    }
+
+    public function setupQueueJobs()
+    {
+        // TODO: Setup queue jobs for users to get back to the website and checkout
+        // TODO: Create a coupon and send an email to the customer
     }
 
     /**
