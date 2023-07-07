@@ -1,66 +1,181 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![biblio-rounded](https://github.com/hbakouane/biblio-backend/assets/57842491/602ef1d5-553e-4107-9031-a08c2b270b33)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Introduction
+<p>Biblio is a web app for managing the work flow of a library, coming with an API as a microservice which you can use in a separate frontend project.</p>
 
-## About Laravel
+<div align="center">
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Work  - In Progress](https://img.shields.io/badge/Work_-In_Progress-blue?style=for-the-badge)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+</div>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Links:
+[Frontend](https://github.com/hbakouane/biblio-frontend) <br />
+[Backend](https://github.com/hbakouane/biblio-backend)
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Installation:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Backend:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Clone the repo first:
+```
+$ git clone https://github.com/hbakouane/biblio-backend && cd biblio-backend 
+```
 
-## Laravel Sponsors
+Install composer dependecies:
+```
+composer i
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Create .env file
+```
+cp .env.example .env
+```
 
-### Premium Partners
+Generate a key:
+```
+php artisan key:generate
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Go to your .env and add your database credentials then run the migration
+```
+php artisan migrate
+```
 
-## Contributing
+Are you on Mac? and using Valet? make sure you run this command so you can access the app via: biblio-backend.test
+```
+valet park
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+So far the project is good to go.
 
-## Code of Conduct
+# Project architecture:
+The whole project is located at the Modules folder, you can find there models, controllers, factories & seeders, migrations, observers, mails and ... <br />
+Each module has a folder, let's take the Book module for example:
+```
+| Modules
+    | Book
+        | Config
+        | Console
+        | Database
+            | factories
+            | Migrations
+            | Seeders
+        | Entities
+            Book.php
+        | Http
+            | Controllers
+            | Middlewares
+            | Requests
+            | Traits
+        | Providers
+        | Resources
+            | views
+        | Routes
+            books.php
+        | Tests
+        | Transformers
+            BookResource
+        composer.json
+        module.json
+        package.json
+        vite.config.js
+    | Order
+    | Category
+    | User
+    | Profile
+    ...
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+General information are located in the ```Core.php``` file, it has information like:
+```
+class Core
+{
+    /**
+     * Items to return per page in a pagination
+     */
+    const ITEMS_PER_PAGE = 10;
 
-## Security Vulnerabilities
+    /**
+     * Allowed image extensions
+     *
+     * @var array|string[]
+     */
+    public static array $allowedImageExtension = ['png', 'jpg', 'jpeg', 'svg'];
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    /**
+     * All media collections
+     */
+    const COLLECTION_PROFILE_IMAGES = 'profile_images';
+}
+```
 
-## License
+# Mechanism:
+We are gonna be using the command with the namespace ```module``` all over the application in order to create any Model, controller or whatever.
+## Create a new Module:
+```
+php artisan module:make Customer
+```
+This creates our module folder which will hold all the files inside the Modules folder.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Create a new Model
+```
+php artisan module:make-model Customer Customer
+```
+This will create a file in: ```Modules/Customer/Entities/Customer.php``` <br />
+the created model looks like this:
+```
+<?php
+
+namespace Modules\Customer\Entities;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Uuids;
+
+class Customer extends Model
+{
+    use HasFactory, Uuids;
+
+    /**
+     * Mass-assignable attributes
+     *
+     * @var array[]
+    */
+    protected $fillable = [];
+
+    protected static function newFactory()
+    {
+        return \Modules\Customer\Database\factories\CustomerFactory::new();
+    }
+}
+```
+To follow the convention of how the project was built, you have to create some files for each new created model, let's take the Book model for example:
+```
+use HasFactory, Uuids, BookMethods, BookRelationships, Updatable;
+```
+Let's go through the unusual ones one by one: <br />
+#### BookMethods: 
+This trait includes every method that is related to the book model, for example: ```createBook()``` <br />
+
+You will notice that the BookMethods has a method called ```createBook()```, well, that's the case with every other module, we have one method which responsible for creating a new record of that model so that we can do modifications easily and just in one place when we want. 
+
+#### BookRelationships: 
+This trait includes every relationship of the book model, for example: ```publisher()``` or ```category()```
+
+#### Updatable:
+This is a global trait which can be used for all the models, it includes methods that related to updating a model, like: ```updateUsingRequest()```
+
+<b>The goal from those traits is mainly leaving the Models just for properties, besides, any developer who is new to the project, they can directly access a method/relationship because they know exactly where it might be located.</b>
+
+## Create a new controller inside the Customer module:
+<b>Note</b>: All the controllers are a single action controller
+```
+php artisan module:make-controller FetchAllCustomers Customer
+```
+
+## Migration:
+Go to ```Modules/Customer/migrations/create_customers_table.php``` and put your code there
+
+## 
