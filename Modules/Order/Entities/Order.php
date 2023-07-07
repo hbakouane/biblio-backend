@@ -27,6 +27,16 @@ class Order extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var string[]
+     */
+    protected $casts = [
+        'times_customer_has_been_reminded' => 'int',
+        'total' => 'float'
+    ];
+
+    /**
      * Possible order statuses
      */
     const STATUS_PENDING = 'pending';

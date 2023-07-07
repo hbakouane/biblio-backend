@@ -5,6 +5,7 @@ namespace Modules\Order\Http\Traits;
 use Modules\Book\Entities\Book;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderItem;
+use Modules\Order\Jobs\RemindCustomerToCheckoutOrder;
 use Modules\Profile\Entities\Profile;
 
 trait OrderMethods
@@ -64,10 +65,20 @@ trait OrderMethods
         ]);
     }
 
+    /**
+     * Set up the necessary queue jobs and reminders
+     * for the customer
+     *
+     * @return void
+     */
     public function setupQueueJobs()
     {
-        // TODO: Setup queue jobs for users to get back to the website and checkout
-        // TODO: Create a coupon and send an email to the customer
+        // Remind the customer that they have a pending order after 1 day
+        // of adding a new item to the order
+        for ($i = 1; $i < 3; $i++) {
+            RemindCustomerToCheckoutOrder::dispatch($this)
+                ->delay(now()->addMinutes($i)); // TODO: Make it addDays
+        }
     }
 
     /**
@@ -86,7 +97,7 @@ trait OrderMethods
     {
         return Order::create([
             'customer_id' => $customer instanceof Profile ? $customer->id : $customer,
-            'total' => $total,
+            'total' => $total ?? 0,
             'status' => $status
         ]);
     }

@@ -28,7 +28,10 @@ return [
         'discover_books' => 'Discover our books',
         'update_quantity' => 'Add more copies',
         'low_quantity_reminder' => 'Your book is getting out of stock, JUST :quantity LEFT',
-        'item_out_of_stock' => '[IMPORTANT]: Your book has been out of stock'
+        'item_out_of_stock' => '[IMPORTANT]: Your book has been out of stock',
+        'reminder_subject' => 'Dear :name, your order is still awaiting for checkout',
+        'reminder_body' => 'Your new books are still awaiting for you.',
+        'checkout_now' => 'Checkout Now'
     ],
 
     'user' => [
@@ -79,7 +82,10 @@ return [
                     'quantity_not_available' => 'The given quantity is not available for this item.'
                 ]
             ]
-        ]
+        ],
+
+        'total' => 'Total',
+        'quantity' => 'Quantity'
     ],
 
     'activity' => [

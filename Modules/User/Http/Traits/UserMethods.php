@@ -113,6 +113,8 @@ trait UserMethods
      */
     public function getProfileImage($image = null)
     {
+        if (!auth()->check()) return null;
+
         $this->resetCachedProfileImageUrl();
 
         return Cache::remember($this->getProfileImageCachingKey(), 3600 * 48, function () use ($image) {

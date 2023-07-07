@@ -57,8 +57,6 @@ class AttachItemsToOrderController extends Controller
             }
 
             $order->updateTotal();
-
-            $order->setupQueueJobs();
         });
 
         $order->load('items');

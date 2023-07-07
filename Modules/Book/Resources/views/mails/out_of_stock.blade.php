@@ -1,7 +1,12 @@
+@php
+    /*
+     * @var Book $book
+     */
+@endphp
+
 @extends('core::layouts.mail')
 
 @section('body')
-
     <div class="row">
 
         <!-- Book Cover -->

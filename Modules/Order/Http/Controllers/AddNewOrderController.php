@@ -48,6 +48,8 @@ class AddNewOrderController extends Controller
             $order->update([
                 'note' => $request->get('note')
             ]);
+
+            $order->setupQueueJobs();
         });
 
         $order->load([
