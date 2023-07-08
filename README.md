@@ -1,11 +1,11 @@
 ![biblio-rounded](https://github.com/hbakouane/biblio-backend/assets/57842491/602ef1d5-553e-4107-9031-a08c2b270b33)
+<br />
+![Work  - In Progress](https://img.shields.io/badge/Work_-In_Progress-blue?style=for-the-badge)
 
 # Introduction
 <p>Biblio is a web app for managing the work flow of a library, coming with an API as a microservice which you can use in a separate frontend project.</p>
 
 <div align="center">
-
-![Work  - In Progress](https://img.shields.io/badge/Work_-In_Progress-blue?style=for-the-badge)
 
 </div>
 
