@@ -11,7 +11,8 @@
 
 # Links:
 [Frontend](https://github.com/hbakouane/biblio-frontend) <br />
-[Backend](https://github.com/hbakouane/biblio-backend)
+[Backend](https://github.com/hbakouane/biblio-backend) <br />
+[Postman API collection](https://universal-flare-482543.postman.co/workspace/New-Team-Workspace~2bcc94e9-0cca-41bf-b213-a9e38e7ed8d8/collection/15623240-8015b659-401c-4476-9912-7aa1c76904a6?action=share&creator=15623240)
 
 
 # Installation:
