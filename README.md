@@ -231,4 +231,7 @@ We already have an email template that's looking like this, however, to write co
 @endsection
 
 ```
-The output will be something like this:
+The output will be something like this: <br /><br />
+![Capture d’écran 2023-07-08 à 01 57 13-modified (1)](https://github.com/hbakouane/biblio-backend/assets/57842491/e5d6db77-f934-4cb6-9f9b-4de301c54853)
+
+
