@@ -211,3 +211,24 @@ public function uploadMedia(
     return $media->toMediaCollection($collection);
 }
 ```
+
+# Mail:
+We already have an email template that's looking like this, however, to write content for a mail blade, you can extend the mail layout and put your content inside the content holder, the blade file for your email would look something like this:
+```
+@extends('core::layouts.mail')
+
+@section('body')
+    {!! __('a title here') !!}
+
+    <div class="text-center mt-3">
+        <!-- Content go here -->
+    
+        @include('core::_partials.mails.cta', [
+            'text' => __('app.mail.discover_books'),
+            'url' => config('app.url')
+        ])
+    </div>
+@endsection
+
+```
+The output will be something like this:
