@@ -169,7 +169,7 @@ This is a global trait which can be used for all the models, it includes methods
 
 <b>The goal from those traits is mainly leaving the Models just for properties, besides, any developer who is new to the project, they can directly access a method/relationship because they know exactly where it might be located.</b>
 
-## Create a new controller inside the Customer module:
+## Create a new controller:
 <b>Note</b>: All the controllers are a single action controller
 ```
 php artisan module:make-controller FetchAllCustomers Customer
@@ -178,4 +178,35 @@ php artisan module:make-controller FetchAllCustomers Customer
 ## Migration:
 Go to ```Modules/Customer/migrations/create_customers_table.php``` and put your code there
 
-## 
+## File Upload:
+We have one method that handles file uploading all over the project, it's located in the ```Modules\Core\Http\Controllers\CoreController``` class and it's called ```uploadMedia```, you basically feed it 2 required arguments and 3 optional ones.
+```
+/**
+ * Uploads the given media to a collection
+ *
+ * @param User|Model $model
+ * @param $media
+ * @param string $collection
+ * @param string|null $name
+ * @param string|null $fileName
+ * @return void
+ * @throws FileDoesNotExist
+ * @throws FileIsTooBig
+ */
+public function uploadMedia(
+    User|Model $model,
+    $media,
+    string $collection,
+    string $name = null,
+    string $fileName = null
+)
+{
+    $media = $model->addMedia($media);
+
+    if ($name) $media->usingName($name);
+
+    if ($fileName) $media->usingFileName($fileName);
+
+    return $media->toMediaCollection($collection);
+}
+```
