@@ -1,3 +1,5 @@
 TODO: Refactor the models
 TODO: write a READ.me
 TODO: Add a full messaging system
+TODO: state machine
+TODO: Atomic Locks

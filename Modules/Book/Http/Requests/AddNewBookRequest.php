@@ -18,28 +18,35 @@ class AddNewBookRequest extends FormRequest
                 'bail', 'required', 'string',
                 'max:100'
             ],
+
             'author' => [
                 'bail', 'required', 'string',
                 'max:100'
             ],
+
             'excerpt' => [
                 'bail', 'nullable', 'string',
                 'max:120'
             ],
+
             'description' => [
                 'bail', 'nullable', 'string',
                 'max:10000'
             ],
+
             'category_id' => [
                 'bail', 'required', 'string',
                 'exists:categories,id'
             ],
+
             'price' => [
                 'bail', 'required', 'numeric'
             ],
+
             'quantity '=> [
                 'bail', 'required', 'string'
             ],
+
             'publisher_id' => [
                 'bail', 'required', 'string',
                 'exists:profiles,id'

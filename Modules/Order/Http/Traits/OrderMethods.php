@@ -101,4 +101,17 @@ trait OrderMethods
             'status' => $status
         ]);
     }
+
+    /**
+     * Update status of order
+     *
+     * @param string $status
+     * @return void
+     */
+    public function updateStatus(string $status)
+    {
+        $this->update([
+            'status' => $status
+        ]);
+    }
 }

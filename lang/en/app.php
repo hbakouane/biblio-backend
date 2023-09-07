@@ -5,7 +5,8 @@ return [
         'success' => 'Operation was completed successfully.',
         'failure' => 'Something went wrong.',
         'invalid' => 'Invalid response from server.',
-        'not_found' => 'Content not found.'
+        'not_found' => 'Content not found.',
+        'unauthenticated' => 'Unauthenticated.'
     ],
 
     'auth' => [
@@ -81,6 +82,13 @@ return [
                     'attached' => 'Items were added to order successfully.',
                     'quantity_not_available' => 'The given quantity is not available for this item.'
                 ]
+            ]
+        ],
+
+        'update' => [
+            'updated' => 'Order was updated successfully.',
+            'status' => [
+                'updated' => 'Status was updated successfully.'
             ]
         ],
 

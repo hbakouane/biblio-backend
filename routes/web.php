@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return response([
-        'message' => 'Content not found'
+        'message' => 'Content not found.'
     ], 404);
 });

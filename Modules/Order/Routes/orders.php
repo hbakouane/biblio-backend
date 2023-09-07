@@ -2,6 +2,7 @@
 
 use Modules\Order\Http\Controllers\AddNewOrderController;
 use Modules\Order\Http\Controllers\AttachItemsToOrderController;
+use Modules\Order\Http\Controllers\UpdateOrderStatusController;
 
 Route::middleware('auth:sanctum')
     ->prefix('orders')
@@ -36,5 +37,15 @@ Route::middleware('auth:sanctum')
                 */
                 Route::post('/items/attach', [AttachItemsToOrderController::class, 'attach'])
                     ->name('items.attach');
+
+                /*
+                ******************************************************
+                *
+                *              Update order's status
+                *
+                ******************************************************
+                */
+                Route::patch('/status/update', [UpdateOrderStatusController::class, 'update'])
+                    ->name('status.update');
             });
     });
