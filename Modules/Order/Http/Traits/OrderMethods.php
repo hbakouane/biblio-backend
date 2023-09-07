@@ -113,5 +113,6 @@ trait OrderMethods
         $this->update([
             'status' => $status
         ]);
+        // TODO: Notify when order has been paid/cancelled
     }
 }
