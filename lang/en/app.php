@@ -5,7 +5,8 @@ return [
         'success' => 'Operation was completed successfully.',
         'failure' => 'Something went wrong.',
         'invalid' => 'Invalid response from server.',
-        'not_found' => 'Content not found.'
+        'not_found' => 'Content not found.',
+        'unauthenticated' => 'Unauthenticated.'
     ],
 
     'auth' => [
@@ -25,7 +26,13 @@ return [
             'welcome' => 'Welcome to ' . config('app.name') . ', :name!',
             'content' => '<b>Hi :name</b>, <br /><br /> We\'ve got great news, your new account has been activated. You can visit our online library and start buying your favourite books!'
         ],
-        'discover_books' => 'Discover our books'
+        'discover_books' => 'Discover our books',
+        'update_quantity' => 'Add more copies',
+        'low_quantity_reminder' => 'Your book is getting out of stock, JUST :quantity LEFT',
+        'item_out_of_stock' => '[IMPORTANT]: Your book has been out of stock',
+        'reminder_subject' => 'Dear :name, your order is still awaiting for checkout',
+        'reminder_body' => 'Your new books are still awaiting for you.',
+        'checkout_now' => 'Checkout Now'
     ],
 
     'user' => [
@@ -65,6 +72,28 @@ return [
         'delete' => [
             'deleted' => 'Book was deleted successfully.'
         ]
+    ],
+
+    'order' => [
+        'add' => [
+            'added' => 'Order was added successfully.',
+            'items' => [
+                'attach' => [
+                    'attached' => 'Items were added to order successfully.',
+                    'quantity_not_available' => 'The given quantity is not available for this item.'
+                ]
+            ]
+        ],
+
+        'update' => [
+            'updated' => 'Order was updated successfully.',
+            'status' => [
+                'updated' => 'Status was updated successfully.'
+            ]
+        ],
+
+        'total' => 'Total',
+        'quantity' => 'Quantity'
     ],
 
     'activity' => [

@@ -5,6 +5,7 @@ namespace Modules\Book\Http\Traits;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\Category\Entities\Category;
+use Modules\Order\Entities\OrderItem;
 use Modules\Profile\Entities\Profile;
 
 trait BookRelationships
@@ -31,5 +32,18 @@ trait BookRelationships
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get the orders that contain that book
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ordersItems()
+    {
+        return $this->hasMany(
+            OrderItem::class,
+            'item_id'
+        );
     }
 }

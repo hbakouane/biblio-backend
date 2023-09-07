@@ -1,3 +1,9 @@
+@php
+    /*
+     * @var User $user
+     */
+@endphp
+
 @extends('core::layouts.mail')
 
 @section('body')

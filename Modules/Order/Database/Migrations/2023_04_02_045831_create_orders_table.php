@@ -18,15 +18,17 @@ return new class extends Migration
             $table->uuid('id')
                 ->primary();
 
-            $table->string('customer');
+            $table->string('customer_id');
             $table->enum('status', Order::getStatuses())
                 ->default(Order::STATUS_PENDING);
-            $table->string('total')
+            $table->float('total')
                 ->nullable();
             $table->string('note')
                 ->nullable();
+            $table->integer('times_customer_has_been_reminded')
+                ->default(0);
 
-            $table->foreign('customer')
+            $table->foreign('customer_id')
                 ->references('id')
                 ->on('profiles');
 

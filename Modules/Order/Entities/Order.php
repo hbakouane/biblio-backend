@@ -19,10 +19,21 @@ class Order extends Model
      * @var array[]
     */
     protected $fillable = [
-        'customer',
+        'customer_id',
         'status',
+        'times_customer_has_been_reminded',
         'total',
         'note'
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var string[]
+     */
+    protected $casts = [
+        'times_customer_has_been_reminded' => 'int',
+        'total' => 'float'
     ];
 
     /**

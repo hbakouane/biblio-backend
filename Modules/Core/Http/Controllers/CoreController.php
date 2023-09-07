@@ -55,11 +55,12 @@ class CoreController extends Controller
     /**
      * Handle the success response
      *
-     * @param $message
-     * @param $data
+     * @param null $message
+     * @param null $data
+     * @param int $status
      * @return Application|ResponseFactory|\Illuminate\Foundation\Application|Response
      */
-    public function success($message = null, $data = null, $status = 200)
+    public function success($message = null, $data = null, int $status = 200)
     {
         $res = [
             'message' => $message ?? __('app.response.success')
@@ -87,7 +88,7 @@ class CoreController extends Controller
      * Paginate a list of data
      *
      * @param $data
-     * @return LengthAwarePaginator
+     * @return array
      */
     public function paginate($data)
     {

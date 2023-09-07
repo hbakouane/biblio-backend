@@ -31,6 +31,10 @@ return new class extends Migration
                 ->nullable();
             $table->integer('quantity')
                 ->nullable();
+            $table->integer('legacy_quantity')
+                ->nullable();
+            $table->integer('sold_copies')
+                ->default(0);
             $table->enum('status', Book::getStatuses())
                 ->default(Book::STATUS_PUBLISHED);
             $table->string('published_by');
