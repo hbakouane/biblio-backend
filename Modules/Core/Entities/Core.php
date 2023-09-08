@@ -25,6 +25,13 @@ class Core
     const COLLECTION_PROFILE_IMAGES = 'profile_images';
 
     /**
+     * All possible queues names
+     */
+    CONST QUEUE_USER = 'user';
+    CONST QUEUE_BOOK = 'book';
+    CONST QUEUE_ORDER = 'order';
+
+    /**
      * Get a list of all media collections
      *
      * @return string[]
@@ -33,6 +40,20 @@ class Core
     {
         return [
             self::COLLECTION_PROFILE_IMAGES
+        ];
+    }
+
+    /**
+     * Get a list of all the possible queues
+     *
+     * @return string[]
+     */
+    public static function getAllQueues()
+    {
+        return [
+            self::QUEUE_USER,
+            self::QUEUE_BOOK,
+            self::QUEUE_ORDER
         ];
     }
 }

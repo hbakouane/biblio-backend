@@ -46,7 +46,7 @@ class RemindCustomerToCheckoutOrder implements ShouldQueue
     public function handle()
     {
         $timesCustomerHasBeenReminded = $this->customer->times_customer_has_been_reminded;
-        dd($timesCustomerHasBeenReminded);
+
         if ($timesCustomerHasBeenReminded === 0) {
             $this->remindCustomerToCheckoutOrder();
         } else if ($timesCustomerHasBeenReminded === 1) {

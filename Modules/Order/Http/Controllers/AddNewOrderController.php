@@ -42,7 +42,7 @@ class AddNewOrderController extends Controller
         DB::transaction(function () use (&$order, $request) {
             $order = Order::createOrder(
                 $request->get('customer_id'),
-                $request->get('total')
+                0
             );
 
             $order->update([
