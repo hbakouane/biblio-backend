@@ -2,6 +2,7 @@
 
 namespace Modules\Core\Entities;
 
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -37,7 +38,7 @@ class Roles
     /**
      * Possible permissions for user's profile
      */
-    const PERMISSION_INACTIVATE_PROFILE = 'Inactivate Profile';
+    const PERMISSION_DEACTIVATE_PROFILE = 'Deactivate Profile';
     const PERMISSION_EDIT_PROFILE = 'Edit Profile';
     const PERMISSION_DELETE_PROFILE = 'Delete Profile';
 
@@ -72,7 +73,7 @@ class Roles
         self::PERMISSION_EDIT_USER,
         self::PERMISSION_DELETE_USER,
 
-        self::PERMISSION_INACTIVATE_PROFILE,
+        self::PERMISSION_DEACTIVATE_PROFILE,
         self::PERMISSION_EDIT_PROFILE,
         self::PERMISSION_DELETE_PROFILE,
 
@@ -103,7 +104,7 @@ class Roles
         self::PERMISSION_DELETE_USER,
 
         // Managing profile
-        self::PERMISSION_INACTIVATE_PROFILE,
+        self::PERMISSION_DEACTIVATE_PROFILE,
         self::PERMISSION_EDIT_PROFILE,
         self::PERMISSION_DELETE_PROFILE,
 
@@ -128,7 +129,7 @@ class Roles
 
     const ROLE_PUBLISHER_PERMISSIONS = [
         // Managing profile
-        self::PERMISSION_INACTIVATE_PROFILE,
+        self::PERMISSION_DEACTIVATE_PROFILE,
         self::PERMISSION_EDIT_PROFILE,
         self::PERMISSION_DELETE_PROFILE,
 
@@ -144,7 +145,7 @@ class Roles
 
     const ROLE_CUSTOMER_PERMISSIONS = [
         // Managing profile
-        self::PERMISSION_INACTIVATE_PROFILE,
+        self::PERMISSION_DEACTIVATE_PROFILE,
         self::PERMISSION_EDIT_PROFILE,
         self::PERMISSION_DELETE_PROFILE,
 
@@ -192,7 +193,10 @@ class Roles
         $roles = [];
 
         foreach (self::ALL_ROLES as $role) {
-            $roles[] = Role::create(['name' => $role]);
+            $roles[] = Role::create([
+                'id' => Str::uuid(),
+                'name' => $role
+            ]);
         }
 
         return $roles;
