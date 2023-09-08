@@ -7,6 +7,7 @@ use Modules\Book\Entities\Book;
 use Modules\Book\Jobs\NotifyPublisherTheBookWasOutOfStock;
 use Modules\Book\Jobs\RemindPublisherOfLowQuantity;
 use Modules\Category\Entities\Category;
+use Modules\Core\Entities\Core;
 use Modules\Profile\Entities\Profile;
 
 trait BookMethods
@@ -56,6 +57,7 @@ trait BookMethods
     public function remindPublisherOfLowQuantity()
     {
         RemindPublisherOfLowQuantity::dispatch($this)
+            ->onQueue(Core::QUEUE_BOOK)
             ->delay(now()->addMinute());
     }
 
@@ -67,6 +69,7 @@ trait BookMethods
     public function notifyPublisherThatTheBookWasOutOfStock()
     {
         NotifyPublisherTheBookWasOutOfStock::dispatch($this)
+            ->onQueue(Core::QUEUE_BOOK)
             ->delay(now()->addMinute());
     }
 

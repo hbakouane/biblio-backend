@@ -19,10 +19,6 @@ class AddNewOrderRequest extends FormRequest
                 'exists:profiles,id'
             ],
 
-            'total' => [
-                'bail', 'required', 'numeric'
-            ],
-
             'note' => [
                 'nullable', 'string', 'max:120'
             ]

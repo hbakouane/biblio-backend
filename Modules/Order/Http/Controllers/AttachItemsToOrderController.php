@@ -76,7 +76,8 @@ class AttachItemsToOrderController extends Controller
     {
         if (!($item['quantity'] <= $book->quantity)) {
             throw ValidationException::withMessages([
-                'quantity' => __('app.order.add.items.attach.quantity_not_available')
+                'quantity' => __('app.order.add.items.attach.quantity_not_available'),
+                'book_id' => $book->id
             ]);
         }
     }

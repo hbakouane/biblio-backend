@@ -3,6 +3,7 @@
 namespace Modules\Order\Http\Traits;
 
 use Modules\Book\Entities\Book;
+use Modules\Core\Entities\Core;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderItem;
 use Modules\Order\Jobs\RemindCustomerToCheckoutOrder;
@@ -77,6 +78,7 @@ trait OrderMethods
         // of adding a new item to the order
         for ($i = 1; $i < 3; $i++) {
             RemindCustomerToCheckoutOrder::dispatch($this)
+                ->onQueue(Core::QUEUE_ORDER)
                 ->delay(now()->addMinutes($i)); // TODO: Make it addDays
         }
     }

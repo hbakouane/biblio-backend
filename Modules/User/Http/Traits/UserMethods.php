@@ -66,7 +66,7 @@ trait UserMethods
 
         // TODO: Reactivate the welcome email sending when we're in production so we don't use
         // all mailtrap's free plan
-        // self::sendWelcomeEmail($user);
+        self::sendWelcomeEmail($user);
 
         // Create a profile for the created user
         Profile::createProfile($user->id);
@@ -83,6 +83,7 @@ trait UserMethods
     protected static function sendWelcomeEmail($user)
     {
         SendWelcomeEmailToUser::dispatch($user)
+            ->onQueue(Core::QUEUE_USER)
             ->delay(now()->addMinute());
     }
 

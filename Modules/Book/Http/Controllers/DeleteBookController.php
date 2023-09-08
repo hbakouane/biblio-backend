@@ -6,10 +6,14 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Modules\Book\Emails\NotifyCustomersBookHasBeenDeleted as NotifyCustomersBookHasBeenDeletedMail;
 use Modules\Book\Entities\Book;
 use Modules\Book\Http\Requests\DeleteBookRequest;
 use Modules\Book\Jobs\NotifyCustomersBookHasBeenDeleted;
+use Modules\Core\Entities\Core;
 use Modules\Core\Http\Controllers\CoreController as Controller;
+use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderItem;
 
 class DeleteBookController extends Controller
@@ -26,7 +30,6 @@ class DeleteBookController extends Controller
         $this->process($book);
 
         return $this->success(
-            __('app.book.delete.deleted'),
             status: 204
         );
     }
@@ -76,7 +79,8 @@ class DeleteBookController extends Controller
      */
     private function notifyDeletionOfBook(Book $book, array $emails)
     {
-        NotifyCustomersBookHasBeenDeleted::dispatch($book, $emails);
+        NotifyCustomersBookHasBeenDeleted::dispatch($book, $emails)
+            ->onQueue(Core::QUEUE_BOOK);
     }
 
     /**
@@ -93,7 +97,7 @@ class DeleteBookController extends Controller
         $orders = [];
 
         foreach ($ordersItems as $orderItem) {
-            if (!in_array($orderItem->order_id, $orders)) {
+            if (!in_array($orderItem->order_id, $orders) && $orderItem->order->status === Order::STATUS_PENDING) {
                 $orders []= $orderItem->order;
             }
         }
