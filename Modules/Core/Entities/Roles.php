@@ -194,7 +194,6 @@ class Roles
 
         foreach (self::ALL_ROLES as $role) {
             $roles[] = Role::create([
-                'id' => Str::uuid(),
                 'name' => $role
             ]);
         }
