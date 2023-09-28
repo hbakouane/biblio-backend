@@ -17,6 +17,8 @@ trait Uuids
             $model->keyType = 'string';
             $model->incrementing = false;
 
+            self::incrementNumericIdIfItExists($model);
+
             if (empty($model->{$model->getKeyName()})) {
                 $model->{$model->getKeyName()} = Str::uuid()->toString();
             }
@@ -41,5 +43,18 @@ trait Uuids
     public function getKeyType()
     {
         return 'string';
+    }
+
+    /**
+     * Increment the id_numeric column if it exists
+     *
+     * @param $model
+     * @return void
+     */
+    public static function incrementNumericIdIfItExists($model)
+    {
+        if ($model->numericId) {
+            $model->id_numeric = $model->max('id_numeric') + 1;
+        }
     }
 }

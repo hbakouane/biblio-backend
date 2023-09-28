@@ -69,14 +69,86 @@ class Refresh extends Command
         $this->alert('Refreshing the database ...');
 
         Artisan::call('module:migrate-fresh');
-        $this->info('Database refreshed');
 
-        // Register the roles and permissions
         app(Roles::class)->registerRolesAndPermissionsAndAssignPermissionsToRoles();
 
-        // Seed the data
-        $this->info('Seeding data ...');
-        Artisan::call('db:seed');
-        $this->info('Data seeded successfully.');
+        $time = $this->getTimeDiff($now);
+
+        $this->info("Database refreshed. ($time)" . PHP_EOL);
+    }
+
+    /**
+     * Prepare all the seeders and track how much time each one took
+     *
+     * @return void
+     */
+    private function prepareSeeding()
+    {
+        $now = Carbon::now();
+
+        $this->alert("Seeding data ...");
+
+        $this->seedData();
+
+        $time = $this->getTimeDiff($now);
+
+        $this->info("Data seeded successfully. ($time)");
+    }
+
+    /**
+     * Process seeding data
+     *
+     * @return void
+     */
+    private function seedData()
+    {
+        $this->seed(CountryTableSeeder::class, 'Country');
+
+        $this->seed(UserDatabaseSeeder::class, 'User');
+
+        $this->seed(AddressDatabaseSeeder::class, 'Address');
+
+        $this->seed(CategoryDatabaseSeeder::class, 'Category');
+
+        $this->seed(BookDatabaseSeeder::class, 'Book');
+
+        $this->seed(OrderDatabaseSeeder::class, 'Order');
+
+        $this->seed(ActivityDatabaseSeeder::class, 'Activity');
+    }
+
+    /**
+     * Run a seeder and track the time it took
+     *
+     * @param Seeder|string $class
+     * @param string $name
+     * @return void
+     */
+    private function seed(Seeder|string $class, string $name)
+    {
+        $time = Carbon::now();
+
+        $this->alert("Seeding data for the $name module.");
+
+        $this->call($class);
+
+        $time = $this->getTimeDiff($time);
+
+        $this->info("Data seeder for the $name module. ($time)" . PHP_EOL);
+    }
+
+    /**
+     * Get the time difference between a given time and now
+     *
+     * @param Carbon $time
+     * @return string
+     */
+    private function getTimeDiff(Carbon $time): string
+    {
+        $diff = Carbon::parse($time)->diffInMilliseconds();
+
+        if ($diff > 1000) return Carbon::parse($time)->diffInSeconds() . 's';
+
+        return $diff . 'ms';
     }
 }

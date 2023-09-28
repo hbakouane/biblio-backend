@@ -27,12 +27,20 @@ use Laravel\Sanctum\HasApiTokens;
      * @var array<int, string>
      */
     protected $fillable = [
+        'id_numeric',
         'first_name',
         'last_name',
         'full_name',
         'email',
         'password',
     ];
+
+     /**
+      * Defines if we will have a id_numeric column or not
+      *
+      * @var bool
+      */
+    protected $numericId = true;
 
     /**
      * The attributes that should be hidden for serialization.
