@@ -1,4 +1,5 @@
-![biblio-rounded](https://github.com/hbakouane/biblio-backend/assets/57842491/602ef1d5-553e-4107-9031-a08c2b270b33)
+![image](https://github.com/hbakouane/biblio-backend/assets/57842491/e903bc57-94b3-4c52-aa13-f591c6a5085e)
+
 <br /><br />
 ![Work  - In Progress](https://img.shields.io/badge/Work_-In_Progress-blue?style=for-the-badge)
 
