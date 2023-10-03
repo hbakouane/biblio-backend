@@ -3,7 +3,7 @@
 ![Work  - In Progress](https://img.shields.io/badge/Work_-In_Progress-blue?style=for-the-badge)
 
 # Introduction
-<p>Biblio is a web app for managing the work flow of a library, coming with an API as a microservice which you can use in a separate frontend project.</p>
+<p>Biblio is a web app for managing the work flow of a library, coming with an API that you can consume in the frontend.</p>
 
 <div align="center">
 
