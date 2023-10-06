@@ -30,12 +30,15 @@ class UserDatabaseSeeder extends Seeder
             );
         }
 
-        User::createUser(
-            $first = 'Haytam',
-            $last = 'Bakouane',
-            $first . ' ' . $last,
-            'hbakouane@gmail.com',
-            123456
-        );
+        // Create a default user if they do not exist
+        if (!User::where('email', 'hbakouane@gmail.com')->first()) {
+            User::createUser(
+                $first = 'Haytam',
+                $last = 'Bakouane',
+                $first . ' ' . $last,
+                'hbakouane@gmail.com',
+                123456
+            );
+        }
     }
 }

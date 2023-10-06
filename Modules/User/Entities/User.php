@@ -13,11 +13,12 @@ use Laravel\Sanctum\HasApiTokens;
  use Modules\User\Http\Traits\UserRelationships;
  use Spatie\MediaLibrary\HasMedia;
  use Spatie\MediaLibrary\InteractsWithMedia;
+ use Spatie\Permission\Traits\HasRoles;
 
  class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable,
-        Uuids, UserMethods, UserRelationships,
+        HasRoles, Uuids, UserMethods, UserRelationships,
         InteractsWithMedia;
 
     /**
@@ -26,12 +27,20 @@ use Laravel\Sanctum\HasApiTokens;
      * @var array<int, string>
      */
     protected $fillable = [
+        'id_numeric',
         'first_name',
         'last_name',
         'full_name',
         'email',
         'password',
     ];
+
+     /**
+      * Defines if we will have a id_numeric column or not
+      *
+      * @var bool
+      */
+    protected $numericId = true;
 
     /**
      * The attributes that should be hidden for serialization.

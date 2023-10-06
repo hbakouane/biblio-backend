@@ -13,6 +13,9 @@ use Modules\Category\Database\Seeders\CategoryDatabaseSeeder;
 use Modules\Country\Database\Seeders\CountryTableSeeder;
 use Modules\Order\Database\Seeders\OrderDatabaseSeeder;
 use Modules\User\Database\Seeders\UserDatabaseSeeder;
+use Modules\Core\Entities\Roles;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class Refresh extends Command
 {
@@ -66,6 +69,8 @@ class Refresh extends Command
         $this->alert('Refreshing the database ...');
 
         Artisan::call('module:migrate-fresh');
+
+        app(Roles::class)->registerRolesAndPermissionsAndAssignPermissionsToRoles();
 
         $time = $this->getTimeDiff($now);
 
